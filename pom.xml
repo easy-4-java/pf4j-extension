@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"><modelVersion>4.0.0</modelVersion>
-<groupId>io.github.hiwepy</groupId><artifactId>pf4j-extension</artifactId><version>1.0.0.RELEASE</version><packaging>jar</packaging>
+<groupId>io.github.hiwepy</groupId><artifactId>pf4j-extension</artifactId><version>1.0.x.20260630-SNAPSHOT</version><packaging>jar</packaging>
 <properties><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><java.version>1.8</java.version></properties>
 <dependencies>
 <dependency><groupId>org.projectlombok</groupId><artifactId>lombok</artifactId><version>1.18.30</version><scope>provided</scope></dependency>
