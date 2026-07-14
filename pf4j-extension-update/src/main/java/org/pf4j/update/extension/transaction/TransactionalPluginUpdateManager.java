@@ -24,7 +24,7 @@ import org.pf4j.update.UpdateManager;
 import org.pf4j.update.UpdateRepository;
 
 /**
- * 支持制品备份、摘流、健康检查和自动回滚的 PF4J 更新管理器。
+ * 支持制品备份、流量摘除、健康检查和自动回滚的 PF4J 更新管理器。
  *
  * <p>更新操作在单个管理器内串行执行。更新目标存在依赖方时，会在 PF4J 递归卸载后按依赖顺序
  * 重新加载这些插件；新版本失败时恢复旧制品并重新加载整个受影响集合。</p>
@@ -40,7 +40,7 @@ public class TransactionalPluginUpdateManager extends UpdateManager {
     /** 串行化插件生命周期操作的管理器。 */
     private final PluginLifecycleManager lifecycleManager;
 
-    /** 插件健康和摘流服务。 */
+    /** 插件健康和流量摘除服务。 */
     private final PluginHealthService healthService;
 
     /** 插件制品备份和激活存储。 */
@@ -52,7 +52,7 @@ public class TransactionalPluginUpdateManager extends UpdateManager {
     /** 更新完成监听器集合。 */
     private final List<PluginUpdateListener> listeners = new CopyOnWriteArrayList<PluginUpdateListener>();
 
-    /** 更新前等待插件摘流的最大秒数。 */
+    /** 更新前等待插件完成流量摘除的最大秒数。 */
     private final long drainTimeoutSeconds;
 
     /**
@@ -62,7 +62,7 @@ public class TransactionalPluginUpdateManager extends UpdateManager {
      * @param repositories 更新仓库集合
      * @param lifecycleManager 生命周期管理器
      * @param artifactStore 插件制品存储
-     * @param drainTimeoutSeconds 摘流最大等待秒数
+     * @param drainTimeoutSeconds 流量摘除最大等待秒数
      */
     public TransactionalPluginUpdateManager(PluginManager pluginManager, List<UpdateRepository> repositories,
                                             PluginLifecycleManager lifecycleManager,
