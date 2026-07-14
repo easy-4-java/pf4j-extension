@@ -7,9 +7,13 @@ import org.pf4j.PluginRuntimeException;
  *
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
-@SuppressWarnings("serial")
 public class ExtensionResolutionException extends PluginRuntimeException {
 
+    /**
+     * 创建扩展解析异常。
+     *
+     * @param message 描述扩展缺失、候选冲突或主要实现不唯一的错误信息
+     */
     public ExtensionResolutionException(String message) {
         super(message);
     }

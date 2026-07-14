@@ -11,8 +11,22 @@ import org.pf4j.ExtensionPoint;
  */
 public interface CryptoExtensionPoint extends ExtensionPoint {
 
+    /**
+     * 使用扩展实现定义的算法加密原始文本。
+     *
+     * @param source 待加密的原始文本
+     * @param secretKey 算法所需的密钥对象，具体类型由扩展实现约定
+     * @return 加密后的文本
+     */
     String encrypt(String source, Object secretKey);
 
+    /**
+     * 使用扩展实现定义的算法解密密文。
+     *
+     * @param source 待解密的密文
+     * @param secretKey 算法所需的密钥对象，具体类型由扩展实现约定
+     * @return 解密后的原始文本
+     */
     String decrypt(String source, Object secretKey);
 
 }

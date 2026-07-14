@@ -21,8 +21,17 @@ import org.pf4j.core.extension.exception.ExtensionResolutionException;
  */
 public final class ExtensionResolver {
 
+    /**
+     * PF4J 插件管理器，用于查询已发现并实例化的扩展实现。
+     */
     private final PluginManager pluginManager;
 
+    /**
+     * 创建扩展解析器。
+     *
+     * @param pluginManager PF4J 插件管理器，不允许为 {@code null}
+     * @throws NullPointerException 当 {@code pluginManager} 为 {@code null} 时抛出
+     */
     public ExtensionResolver(PluginManager pluginManager) {
         this.pluginManager = Objects.requireNonNull(pluginManager, "pluginManager must not be null");
     }
@@ -32,7 +41,8 @@ public final class ExtensionResolver {
      *
      * @param type 扩展类型
      * @param <T> 扩展类型
-     * @return 不可变扩展列表
+     * @return 指定类型的不可修改扩展列表；没有匹配实现时返回空列表
+     * @throws NullPointerException 当 {@code type} 为 {@code null} 时抛出
      */
     public <T> List<T> getExtensions(Class<T> type) {
         Objects.requireNonNull(type, "type must not be null");
@@ -45,7 +55,9 @@ public final class ExtensionResolver {
      * @param type 扩展类型
      * @param pluginId 插件 ID
      * @param <T> 扩展类型
-     * @return 不可变扩展列表
+     * @return 指定插件中匹配类型的不可修改扩展列表；没有匹配实现时返回空列表
+     * @throws NullPointerException 当 {@code type} 为 {@code null} 时抛出
+     * @throws IllegalArgumentException 当 {@code pluginId} 为空时抛出
      */
     public <T> List<T> getExtensions(Class<T> type, String pluginId) {
         Objects.requireNonNull(type, "type must not be null");
@@ -62,7 +74,9 @@ public final class ExtensionResolver {
      * @param pluginId 插件 ID
      * @param extensionId 扩展 ID
      * @param <T> 扩展类型
-     * @return 匹配的扩展
+     * @return 包含匹配扩展的 {@link Optional}；未匹配到扩展时返回空值容器
+     * @throws NullPointerException 当 {@code type} 为 {@code null} 时抛出
+     * @throws IllegalArgumentException 当 {@code pluginId} 或 {@code extensionId} 为空时抛出
      */
     public <T> Optional<T> find(Class<T> type, String pluginId, String extensionId) {
         if (StringUtils.isBlank(extensionId)) {
@@ -70,7 +84,7 @@ public final class ExtensionResolver {
         }
         for (T extension : getExtensions(type, pluginId)) {
             ExtensionMapping mapping = extension.getClass().getAnnotation(ExtensionMapping.class);
-            if (Objects.nonNull(mapping) && StringUtils.equals(mapping.id(), extensionId)) {
+            if (Objects.nonNull(mapping) && extensionId.equals(mapping.id())) {
                 return Optional.of(extension);
             }
         }
@@ -78,9 +92,16 @@ public final class ExtensionResolver {
     }
 
     /**
-     * 获取必需扩展。
+     * 获取指定插件中具有目标扩展 ID 的必需扩展。
      *
+     * @param type 扩展类型
+     * @param pluginId 插件 ID
+     * @param extensionId 扩展 ID
+     * @param <T> 扩展类型
+     * @return 唯一匹配的扩展实例
      * @throws ExtensionResolutionException 未找到扩展时抛出
+     * @throws NullPointerException 当 {@code type} 为 {@code null} 时抛出
+     * @throws IllegalArgumentException 当 {@code pluginId} 或 {@code extensionId} 为空时抛出
      */
     public <T> T getRequired(Class<T> type, String pluginId, String extensionId) {
         return find(type, pluginId, extensionId).orElseThrow(() -> new ExtensionResolutionException(
@@ -91,7 +112,16 @@ public final class ExtensionResolver {
     /**
      * 获取唯一实现或 {@link Primary} 默认实现。
      *
+     * <p>只有一个实现时直接返回该实现；存在多个实现时，要求其中恰好一个实现标记了
+     * {@link Primary}，否则无法确定默认实现。</p>
+     *
+     * @param type 扩展类型
+     * @param pluginId 插件 ID
+     * @param <T> 扩展类型
+     * @return 唯一实现或标记为主要实现的扩展实例
      * @throws ExtensionResolutionException 不存在实现或无法唯一确定默认实现时抛出
+     * @throws NullPointerException 当 {@code type} 为 {@code null} 时抛出
+     * @throws IllegalArgumentException 当 {@code pluginId} 为空时抛出
      */
     public <T> T getPrimary(Class<T> type, String pluginId) {
         List<T> extensions = getExtensions(type, pluginId);
@@ -115,11 +145,18 @@ public final class ExtensionResolver {
                 + "' for plugin '" + pluginId + "', but found " + primaryExtensions.size());
     }
 
+    /**
+     * 将 PF4J 返回的扩展集合转换为不可修改视图。
+     *
+     * @param extensions PF4J 返回的扩展列表，可以为 {@code null}
+     * @param <T> 扩展类型
+     * @return 不可修改的扩展列表；源列表为空时返回共享空列表
+     */
     private static <T> List<T> immutableCopy(List<T> extensions) {
         if (Objects.isNull(extensions) || extensions.isEmpty()) {
             return Collections.emptyList();
         }
-        return Collections.unmodifiableList(new ArrayList<T>(extensions));
+        return Collections.unmodifiableList(extensions);
     }
 
 }
