@@ -20,14 +20,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * {@link PluginHealthService} 健康、就绪与摘流聚合测试。
+ * {@link PluginHealthService} 健康、就绪与流量摘除聚合测试。
  */
 class PluginHealthServiceTest {
 
     /**
-     * 验证最严重健康结果优先，并按顺序执行摘流钩子。
+     * 验证最严重健康结果优先，并按顺序执行流量摘除钩子。
      *
-     * @throws InterruptedException 摘流等待被中断时抛出
+     * @throws InterruptedException 流量摘除等待被中断时抛出
      */
     @Test
     void shouldAggregateHealthAndDrainPlugin() throws InterruptedException {
@@ -73,7 +73,7 @@ class PluginHealthServiceTest {
      *
      * @param healthChecks 健康检查集合
      * @param readinessChecks 就绪检查集合
-     * @param drainHooks 摘流钩子集合
+     * @param drainHooks 流量摘除钩子集合
      * @return PF4J 管理器代理
      */
     private static PluginManager pluginManager(List<PluginHealthCheck> healthChecks,

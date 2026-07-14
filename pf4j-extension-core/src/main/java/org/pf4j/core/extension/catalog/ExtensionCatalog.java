@@ -23,6 +23,7 @@ import org.pf4j.PluginWrapper;
 import org.pf4j.core.extension.annotation.ExtensionMapping;
 import org.pf4j.core.extension.annotation.PluginMapping;
 import org.pf4j.core.extension.annotation.Primary;
+import org.pf4j.core.extension.exception.ExtensionConflictException;
 
 /**
  * 基于 PF4J 运行状态构建的扩展与插件只读目录。

@@ -9,7 +9,7 @@ import org.pf4j.PluginManager;
 import org.pf4j.PluginWrapper;
 
 /**
- * 插件健康、就绪和摘流协调服务。
+ * 插件健康、就绪和流量摘除协调服务。
  *
  * <p>服务按插件查询 PF4J 扩展并聚合结果，不缓存插件扩展实例。</p>
  *
@@ -79,12 +79,12 @@ public final class PluginHealthService {
     }
 
     /**
-     * 开始摘流并等待指定插件的全部摘流钩子完成。
+     * 开始流量摘除并等待指定插件的全部流量摘除钩子完成。
      *
      * @param pluginId 插件 ID
      * @param timeout 最大等待时间
      * @param unit 时间单位
-     * @return 所有摘流钩子在超时前完成时返回 {@code true}
+     * @return 所有流量摘除钩子在超时前完成时返回 {@code true}
      * @throws InterruptedException 当前线程等待期间被中断时抛出
      */
     public boolean drain(String pluginId, long timeout, TimeUnit unit) throws InterruptedException {

@@ -4,7 +4,7 @@
 
 | 模块 | 根包 | 能力 |
 | --- | --- | --- |
-| `pf4j-extension-core` | `org.pf4j.core.extension` | 扩展目录、严格生命周期、调用链、健康检查、摘流与运行诊断 |
+| `pf4j-extension-core` | `org.pf4j.core.extension` | 扩展目录、严格生命周期、调用链、健康检查、流量摘除与运行诊断 |
 | `pf4j-extension-spring` | `org.pf4j.spring.extension` | Spring Bean/Controller 动态注册注销、状态事件与容器生命周期 |
 | `pf4j-extension-update` | `org.pf4j.update.extension` | REST/Maven 仓库、制品准入、签名校验、事务更新与自动回滚 |
 
@@ -75,11 +75,11 @@ pf4j-extension-update
 | 生命周期安全 | `PluginLifecycleManager` | 串行加载/启动/停止/卸载，严格检查启动状态，批量失败逆序回滚，规避 PF4J 3.15.0 批量停止并发修改问题 |
 | 扩展目录 | `ExtensionCatalog` | 生成不持有插件实例的不可变元数据快照，校验重复扩展 ID 和多个 `@Primary` |
 | 调用治理 | `ExtensionInvoker`、`ExtensionInterceptor` | 责任链式日志、指标、追踪和容错扩展，统一异常边界并保留插件/扩展 ID |
-| 健康与摘流 | `PluginHealthService` | 聚合健康、就绪扩展，更新或停止前执行摘流与超时等待 |
+| 健康与流量摘除 | `PluginHealthService` | 聚合健康、就绪扩展，更新或停止前执行流量摘除与超时等待 |
 | 运行诊断 | `PluginDiagnostics` | 输出依赖方、扩展类、失败原因、类来源，并检测插件重复打包宿主 API |
 | Spring 同步 | `PluginBeanRegistry`、`SpringPluginLifecycleSynchronizer` | 插件启动时注册 Bean/Controller，停止、失败和卸载时按所有权精确注销 |
 | 制品准入 | `PluginArtifactVerifier`、`SecureFileDownloader` | 协议、大小、SHA-512、压缩规模、路径穿越、禁止类和可选离线签名校验 |
-| 事务更新 | `TransactionalPluginUpdateManager` | 备份、摘流、更新、依赖方恢复、健康检查、自动回滚和结果监听 |
+| 事务更新 | `TransactionalPluginUpdateManager` | 备份、流量摘除、更新、依赖方恢复、健康检查、自动回滚和结果监听 |
 
 ### 严格启动与安全关闭
 
