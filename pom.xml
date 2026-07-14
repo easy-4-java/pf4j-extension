@@ -4,6 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- 项目坐标与聚合工程基本信息 -->
     <groupId>io.github.hiwepy</groupId>
     <artifactId>pf4j-extension</artifactId>
     <version>${revision}</version>
@@ -12,6 +13,7 @@
     <description>PF4J extension multi-module parent</description>
     <url>https://github.com/hiwepy/pf4j-extension</url>
 
+    <!-- 开源许可证信息，供制品仓库和生成的项目元数据使用 -->
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -19,6 +21,7 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+    <!-- 项目维护者信息 -->
     <developers>
         <developer>
             <name>hiwepy</name>
@@ -27,24 +30,29 @@
             <timezone>+8</timezone>
         </developer>
     </developers>
+    <!-- 源码管理信息，供 Maven Release 等插件定位 Git 仓库 -->
     <scm>
         <connection>scm:git:https://github.com/hiwepy/pf4j-extension.git</connection>
         <developerConnection>scm:git:https://github.com/hiwepy/pf4j-extension.git</developerConnection>
         <url>https://github.com/hiwepy/pf4j-extension</url>
         <tag>HEAD</tag>
     </scm>
+    <!-- 制品发布仓库：正式版本进入 release 仓库，快照版本进入 snapshot 仓库 -->
     <distributionManagement>
         <repository>
+            <!-- 阿里云 Maven 正式制品仓库 -->
             <id>2624322-release-6F6h6R</id>
             <url>https://packages.aliyun.com/6927b116e6c3e0425dbdf60d/maven/2624322-release-6f6h6r</url>
         </repository>
         <snapshotRepository>
+            <!-- 阿里云 Maven 快照制品仓库 -->
             <id>2624322-snapshot-3EoOv3</id>
             <url>https://packages.aliyun.com/6927b116e6c3e0425dbdf60d/maven/2624322-snapshot-3eoov3</url>
         </snapshotRepository>
     </distributionManagement>
 
     <properties>
+        <!-- 项目版本与 Java 编译基线 -->
         <revision>1.0.x.20260630-SNAPSHOT</revision>
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -52,6 +60,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+        <!-- 运行时与测试依赖版本 -->
         <pf4j.version>3.15.0</pf4j.version>
         <pf4j-spring.version>0.9.0</pf4j-spring.version>
         <pf4j-update.version>2.3.0</pf4j-update.version>
@@ -64,6 +73,7 @@
         <lombok.version>1.18.46</lombok.version>
         <junit.version>5.12.2</junit.version>
 
+        <!-- Maven 及构建插件版本 -->
         <maven.version>3.9.0</maven.version>
         <maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
         <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
@@ -82,11 +92,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- PF4J 核心插件框架 -->
             <dependency>
                 <groupId>org.pf4j</groupId>
                 <artifactId>pf4j</artifactId>
                 <version>${pf4j.version}</version>
             </dependency>
+            <!-- PF4J Spring 集成，排除旧日志实现和已淘汰的 Commons Lang 2.x -->
             <dependency>
                 <groupId>org.pf4j</groupId>
                 <artifactId>pf4j-spring</artifactId>
@@ -102,86 +114,103 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            <!-- PF4J 插件更新机制 -->
             <dependency>
                 <groupId>org.pf4j</groupId>
                 <artifactId>pf4j-update</artifactId>
                 <version>${pf4j-update.version}</version>
             </dependency>
+            <!-- Spring 核心工具与基础设施 -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <!-- Spring JCL 日志桥接 -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jcl</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <!-- Spring Bean 容器基础能力 -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-beans</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <!-- Spring AOP 支持 -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <!-- Spring 应用上下文与事件机制 -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <!-- Spring 表达式语言 -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-expression</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <!-- Spring Web 基础设施 -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-web</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <!-- Spring MVC Web 集成 -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <!-- Spring Cloud Deployer 的 Maven 资源解析能力 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-deployer-resource-maven</artifactId>
                 <version>${spring-cloud-deployer.version}</version>
             </dependency>
+            <!-- JSON 序列化与插件元数据处理 -->
             <dependency>
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
                 <version>${gson.version}</version>
             </dependency>
+            <!-- 基于字节码生成的类代理支持 -->
             <dependency>
                 <groupId>cglib</groupId>
                 <artifactId>cglib</artifactId>
                 <version>${cglib.version}</version>
             </dependency>
+            <!-- Apache Commons 通用语言工具 -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
             </dependency>
+            <!-- SLF4J 日志门面 -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
+            <!-- 测试与示例使用的轻量 SLF4J 实现 -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-simple</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
+            <!-- Lombok 编译期代码生成 -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
+            <!-- JUnit Jupiter 单元测试框架 -->
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
@@ -190,20 +219,26 @@
         </dependencies>
     </dependencyManagement>
 
+    <!-- 聚合构建的三个职责模块 -->
     <modules>
+        <!-- PF4J 通用扩展、生命周期、诊断、健康检查和调用治理 -->
         <module>pf4j-extension-core</module>
+        <!-- PF4J 与 Spring 容器、事件和 Bean 注册机制的集成 -->
         <module>pf4j-extension-spring</module>
+        <!-- 插件下载、制品校验和事务化更新能力 -->
         <module>pf4j-extension-update</module>
     </modules>
 
     <build>
         <pluginManagement>
             <plugins>
+                <!-- 清理插件：删除上一轮构建生成的输出 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>${maven-clean-plugin.version}</version>
                 </plugin>
+                <!-- 编译插件：统一 Java 版本、字符集和 Lombok 注解处理器 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -221,16 +256,19 @@
                         </annotationProcessorPaths>
                     </configuration>
                 </plugin>
+                <!-- 部署插件：将构件发布到 distributionManagement 指定的远程仓库 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>${maven-deploy-plugin.version}</version>
                 </plugin>
+                <!-- 环境与依赖约束插件：在构建早期拒绝不兼容配置 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
                     <version>${maven-enforcer-plugin.version}</version>
                 </plugin>
+                <!-- CI Friendly Versions 扁平化插件：解析 revision 并生成可发布 POM -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>flatten-maven-plugin</artifactId>
@@ -256,16 +294,19 @@
                         </execution>
                     </executions>
                 </plugin>
+                <!-- GPG 签名插件：正式发布时为构件生成签名 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
                     <version>${maven-gpg-plugin.version}</version>
                 </plugin>
+                <!-- 安装插件：将构件写入本地 Maven 仓库 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-install-plugin</artifactId>
                     <version>${maven-install-plugin.version}</version>
                 </plugin>
+                <!-- JAR 打包插件：补充实现与规范版本清单信息 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
@@ -279,11 +320,13 @@
                         </archive>
                     </configuration>
                 </plugin>
+                <!-- Javadoc 插件：生成 API 文档及其附属构件 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>${maven-javadoc-plugin.version}</version>
                 </plugin>
+                <!-- Maven Release 插件：统一版本切换、标签和发布流程 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
@@ -295,16 +338,19 @@
                         <releaseProfiles>release</releaseProfiles>
                     </configuration>
                 </plugin>
+                <!-- 资源插件：按统一字符集复制项目资源 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>${maven-resources-plugin.version}</version>
                 </plugin>
+                <!-- 源码插件：生成可随主构件发布的 sources JAR -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
                     <version>${maven-source-plugin.version}</version>
                 </plugin>
+                <!-- 单元测试插件：使用类路径模式运行测试，规避 JPMS 自动模块差异 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
@@ -316,6 +362,7 @@
             </plugins>
         </pluginManagement>
         <plugins>
+            <!-- 构建环境检查：校验 Maven、JDK 以及模块声明的依赖边界 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -339,22 +386,27 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- Java 编译：应用 pluginManagement 中的统一编译配置 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
+            <!-- 资源处理：复制主资源和测试资源 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
             </plugin>
+            <!-- 单元测试：执行各模块的 JUnit 测试 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
+            <!-- JAR 打包：生成各子模块的主构件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
             </plugin>
+            <!-- POM 扁平化：发布时解析 revision，清理时删除临时 POM -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
@@ -363,10 +415,12 @@
     </build>
 
     <profiles>
+        <!-- 发布配置：显式启用 -Prelease 时附加源码、Javadoc 和发布相关插件 -->
         <profile>
             <id>release</id>
             <build>
                 <plugins>
+                    <!-- 附加源码包，方便私库使用者调试和阅读源码 -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
@@ -379,6 +433,7 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <!-- 附加 Javadoc 包，供 IDE 和制品仓库展示 API 文档 -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
@@ -391,14 +446,17 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <!-- 启用构件签名能力 -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
                     </plugin>
+                    <!-- 启用远程仓库部署能力 -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-deploy-plugin</artifactId>
                     </plugin>
+                    <!-- 启用 Maven 标准发布流程 -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-release-plugin</artifactId>
