@@ -17,6 +17,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>io.github.hiwepy</groupId>
+            <artifactId>pf4j-extension-core</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.pf4j</groupId>
             <artifactId>pf4j-update</artifactId>
         </dependency>

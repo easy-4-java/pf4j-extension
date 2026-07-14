@@ -18,29 +18,51 @@ import java.lang.reflect.Proxy;
 public class JdkProxy implements InvocationHandler {
 
     /**
-     * 需要代理的目标对象
+     * 接收实际接口方法调用的目标对象。
      */
     private Object target;
 
+    /**
+     * 创建绑定指定目标对象的 JDK 调用处理器。
+     *
+     * @param target 接收代理方法调用的目标对象
+     */
     public JdkProxy(Object target) {
         this.target = target;
     }
 
-    //定义获取代理对象方法
+    /**
+     * 根据目标对象实现的全部接口创建 JDK 动态代理。
+     *
+     * @param targetObject 接收实际接口方法调用的目标对象
+     * @return 实现目标对象全部接口的动态代理
+     * @throws IllegalArgumentException 当目标类型没有可代理接口或代理类无法创建时抛出
+     */
     public static Object getJDKProxy(Object targetObject) {
-        //JDK动态代理只能针对实现了接口的类进行代理，newProxyInstance 函数所需参数就可看出
         return Proxy.newProxyInstance(targetObject.getClass().getClassLoader(), targetObject.getClass().getInterfaces(), new JdkProxy(targetObject));
     }
 
-    // 定义获取代理对象方法
+    /**
+     * 实例化指定类型，并根据该类型实现的接口创建 JDK 动态代理。
+     *
+     * @param className 需要实例化的具体类型，必须具有可访问的无参构造器并实现至少一个接口
+     * @param <T> 调用方期望的代理类型
+     * @return 基于目标类型接口创建的动态代理
+     * @throws IllegalStateException 当目标类型无法通过无参构造器实例化时抛出
+     * @throws IllegalArgumentException 当目标类型没有可代理接口或代理类无法创建时抛出
+     */
     public static <T> T getJDKProxy(Class<T> className) {
         JdkProxy target = new JdkProxy(instantiate(className));
-        //JDK动态代理只能针对实现了接口的类进行代理，newProxyInstance 函数所需参数就可看出
         return (T) Proxy.newProxyInstance(className.getClassLoader(), className.getInterfaces(), target);
     }
 
     /**
-     * 无参构造实例化（替代 Spring BeanUtils.instantiateClass）。
+     * 通过无参构造器实例化目标类型。
+     *
+     * @param clazz 待实例化的具体类型
+     * @param <T> 目标对象类型
+     * @return 新创建的目标对象
+     * @throws IllegalStateException 当无参构造器不存在、不可访问或执行失败时抛出
      */
     private static <T> T instantiate(Class<T> clazz) {
         try {
@@ -51,6 +73,15 @@ public class JdkProxy implements InvocationHandler {
         }
     }
 
+    /**
+     * 将动态代理接收到的方法调用转发给目标对象。
+     *
+     * @param proxy 接收到调用的 JDK 动态代理对象
+     * @param method 被调用的接口方法
+     * @param args 方法实参数组；无参数方法调用时可以为 {@code null}
+     * @return 目标方法返回值；目标方法返回 {@code void} 时为 {@code null}
+     * @throws Throwable 当反射调用目标方法失败或目标方法抛出异常时继续抛出
+     */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         log.debug("JDK动态代理，监听开始");

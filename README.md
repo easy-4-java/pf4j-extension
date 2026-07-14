@@ -4,9 +4,9 @@
 
 | 模块 | 根包 | 能力 |
 | --- | --- | --- |
-| `pf4j-extension-core` | `org.pf4j.core.extension` | 扩展元数据、类型安全解析、默认实现选择、插件生命周期与代理工具 |
-| `pf4j-extension-spring` | `org.pf4j.spring.extension` | Spring 扩展注入、MVC Controller 动态注册、插件容器生命周期 |
-| `pf4j-extension-update` | `org.pf4j.update.extension` | REST/Maven 更新仓库、下载器与线程安全元数据缓存 |
+| `pf4j-extension-core` | `org.pf4j.core.extension` | 扩展目录、严格生命周期、调用链、健康检查、摘流与运行诊断 |
+| `pf4j-extension-spring` | `org.pf4j.spring.extension` | Spring Bean/Controller 动态注册注销、状态事件与容器生命周期 |
+| `pf4j-extension-update` | `org.pf4j.update.extension` | REST/Maven 仓库、制品准入、签名校验、事务更新与自动回滚 |
 
 根项目 `io.github.hiwepy:pf4j-extension` 是聚合与依赖管理 POM，不再提供 Jar。应用应按需依赖上表中的模块。
 
@@ -62,10 +62,74 @@ pf4j-extension-spring
     └── org.pf4j:pf4j
 
 pf4j-extension-update
+├── pf4j-extension-core
 └── org.pf4j:pf4j-update
 ```
 
 `core` 通过 Maven Enforcer 禁止引入 Spring、`pf4j-spring` 和 `pf4j-update`，保证其可以在纯 Java/PF4J 应用中独立使用。
+
+## 生产扩展能力
+
+| 场景 | 主要 API | 行为 |
+| --- | --- | --- |
+| 生命周期安全 | `PluginLifecycleManager` | 串行加载/启动/停止/卸载，严格检查启动状态，批量失败逆序回滚，规避 PF4J 3.15.0 批量停止并发修改问题 |
+| 扩展目录 | `ExtensionCatalog` | 生成不持有插件实例的不可变元数据快照，校验重复扩展 ID 和多个 `@Primary` |
+| 调用治理 | `ExtensionInvoker`、`ExtensionInterceptor` | 责任链式日志、指标、追踪和容错扩展，统一异常边界并保留插件/扩展 ID |
+| 健康与摘流 | `PluginHealthService` | 聚合健康、就绪扩展，更新或停止前执行摘流与超时等待 |
+| 运行诊断 | `PluginDiagnostics` | 输出依赖方、扩展类、失败原因、类来源，并检测插件重复打包宿主 API |
+| Spring 同步 | `PluginBeanRegistry`、`SpringPluginLifecycleSynchronizer` | 插件启动时注册 Bean/Controller，停止、失败和卸载时按所有权精确注销 |
+| 制品准入 | `PluginArtifactVerifier`、`SecureFileDownloader` | 协议、大小、SHA-512、压缩规模、路径穿越、禁止类和可选离线签名校验 |
+| 事务更新 | `TransactionalPluginUpdateManager` | 备份、摘流、更新、依赖方恢复、健康检查、自动回滚和结果监听 |
+
+### 严格启动与安全关闭
+
+```java
+PluginManager pluginManager = new DefaultPluginManager(pluginsRoot);
+PluginLifecycleManager lifecycle = new PluginLifecycleManager(pluginManager);
+
+lifecycle.addListener(result -> audit(result));
+lifecycle.loadAllAndStartStrictly();
+
+// 应用关闭时调用，内部复制并逆序停止列表。
+lifecycle.unloadAllSafely();
+```
+
+### 调用链、健康检查与诊断
+
+```java
+ExtensionInvoker invoker = new ExtensionInvoker(Arrays.asList(
+        new LoggingExtensionInterceptor(),
+        new TimingExtensionInterceptor(listener)));
+PaymentExtension payment = invoker.createProxy(
+        PaymentExtension.class, target, "payment-plugin", "wechat-pay");
+
+PluginHealthService healthService = new PluginHealthService(pluginManager);
+PluginHealth health = healthService.checkHealth("payment-plugin");
+
+PluginDiagnostics diagnostics = new PluginDiagnostics(pluginManager);
+PluginDiagnosticReport report = diagnostics.diagnose("payment-plugin");
+```
+
+插件可按需实现 `PluginHealthCheck`、`PluginReadinessCheck` 和 `PluginDrainHook` 扩展点。健康与就绪结果为 `UP` 后，事务更新才会提交新版本。
+
+### 安全下载与事务更新
+
+```java
+DownloadPolicy policy = DownloadPolicy.secureDefaults();
+FileDownloader downloader = new SecureFileDownloader(delegateDownloader, policy);
+FileVerifier verifier = new PluginArtifactVerifier(policy);
+
+UpdateRepository repository = new RestTemplateUpdateRepository(
+        "internal", metadataUrl, restTemplate, downloader, verifier);
+PluginArtifactStore store = new FileSystemPluginArtifactStore(
+        pluginManager.getPluginsRoot(), backupRoot);
+TransactionalPluginUpdateManager updates = new TransactionalPluginUpdateManager(
+        pluginManager, Collections.singletonList(repository), lifecycle, store, 30);
+
+PluginUpdateResult result = updates.updateTransactional("payment-plugin", "2.1.0");
+```
+
+`installPlugin` 和 `updatePlugin` 兼容入口在 `TransactionalPluginUpdateManager` 中也会自动转入事务流程。强隔离仍需使用独立进程或容器；PF4J 类加载器不是安全沙箱。
 
 ## 包名迁移
 
@@ -89,3 +153,8 @@ mvn clean verify
 ```
 
 详细版本约束见 [COMPATIBILITY.md](COMPATIBILITY.md)。
+
+PF4J 源码行为与完整实践见：
+
+- [实践一：业务扩展点与多实现插件](docs/PF4J_3.15_PRACTICE_01_BUSINESS_EXTENSION.md)
+- [实践二：生产发布、观测与回滚](docs/PF4J_3.15_PRACTICE_02_PRODUCTION_GOVERNANCE.md)

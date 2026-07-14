@@ -14,7 +14,7 @@
 
 - `pf4j-extension-core`：只依赖 PF4J、cglib、Commons Lang、SLF4J 和 Lombok，不依赖 Spring。
 - `pf4j-extension-spring`：依赖 `core`、`pf4j-spring`、Spring Context 与 Spring Web MVC。
-- `pf4j-extension-update`：独立依赖 `pf4j-update` 和 Spring Web；Maven 资源解析能力为可选依赖。
+- `pf4j-extension-update`：依赖 `core`、`pf4j-update` 和 Spring Web；Maven 资源解析能力为可选依赖。
 
 父 POM 对同一版本线中的 Spring Core、Beans、Context、Web 和 Web MVC 进行统一版本管理，防止 `pf4j-spring` 的传递依赖导致 Spring 组件版本错配。
 
