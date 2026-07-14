@@ -46,10 +46,25 @@ public final class SpringPluginEventPublisher implements PluginStateListener {
     @Override
     public void pluginStateChanged(PluginStateEvent event) {
         Objects.requireNonNull(event, "event must not be null");
+        try {
+            eventPublisher.publishEvent(createSpringEvent(event));
+        } catch (RuntimeException ex) {
+            log.error("Failed to publish Spring state event for PF4J plugin '{}'",
+                    event.getPlugin().getPluginId(), ex);
+        }
+    }
+
+    /**
+     * 将 PF4J 状态事件转换为不持有插件运行对象的 Spring 事件快照。
+     *
+     * @param event PF4J 插件状态事件
+     * @return 包含描述符、运行环境、扩展和失败信息的 Spring 事件
+     */
+    private SpringPluginStateChangedEvent createSpringEvent(PluginStateEvent event) {
         PluginWrapper plugin = event.getPlugin();
         PluginDescriptor descriptor = plugin.getDescriptor();
         FailureDetails failure = failureDetails(plugin.getFailedException());
-        eventPublisher.publishEvent(new SpringPluginStateChangedEvent(event.getSource(), descriptorInfo(descriptor),
+        return new SpringPluginStateChangedEvent(event.getSource(), descriptorInfo(descriptor),
                 Objects.isNull(plugin.getPluginPath()) ? null : plugin.getPluginPath().toAbsolutePath()
                         .normalize().toString(),
                 Objects.isNull(plugin.getRuntimeMode()) ? null : plugin.getRuntimeMode().toString(),
@@ -57,7 +72,7 @@ public final class SpringPluginEventPublisher implements PluginStateListener {
                 Objects.isNull(plugin.getPluginClassLoader()) ? null
                         : plugin.getPluginClassLoader().getClass().getName(),
                 extensionClassNames(event), event.getOldState(), event.getPluginState(), failure.className,
-                failure.message, failure.rootClassName, failure.rootMessage, failure.causeChain));
+                failure.message, failure.rootClassName, failure.rootMessage, failure.causeChain);
     }
 
     /**
