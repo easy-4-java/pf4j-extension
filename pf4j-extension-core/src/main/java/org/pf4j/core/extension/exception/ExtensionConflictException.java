@@ -1,4 +1,4 @@
-package org.pf4j.core.extension.catalog;
+package org.pf4j.core.extension.exception;
 
 import org.pf4j.PluginRuntimeException;
 

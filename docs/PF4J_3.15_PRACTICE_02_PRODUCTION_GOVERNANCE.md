@@ -28,7 +28,7 @@ PF4J 已经提供：
 - 上传鉴权、发布审批、签名和摘要校验。
 - ZIP 炸弹、制品大小、文件数量和许可证检查。
 - 生命周期操作串行化和幂等控制。
-- 请求摘流、在途任务排空和超时强制中止策略。
+- 请求流量摘除、在途任务排空和超时强制中止策略。
 - 指标、日志、追踪、审计和告警。
 - 制品归档、升级事务和失败回滚。
 - 插件权限治理；强隔离场景还需要进程或容器边界。
@@ -248,7 +248,7 @@ sequenceDiagram
 
 关键点：
 
-- 摘流发生在停止插件之前，否则已有请求仍可能调用即将卸载的实例。
+- 流量摘除发生在停止插件之前，否则已有请求仍可能调用即将卸载的实例。
 - `stopPlugin` 和 `unloadPlugin` 会影响依赖方，升级前必须从依赖图计算影响面。
 - 新插件进入 `STARTED` 后还要执行健康检查，不能仅把状态当作业务可用证明。
 - 路由表使用不可变快照和原子替换；不要边遍历边修改扩展集合。
@@ -381,7 +381,7 @@ pluginManager.addPluginStateListener(event -> {
 | `plugin_lifecycle_failures_total` | operation, error_type | 生命周期失败 |
 | `plugin_invocations_total` | plugin_id, extension_point, result | 插件调用量 |
 | `plugin_invocation_duration` | plugin_id, extension_point | 性能和超时 |
-| `plugin_inflight` | plugin_id | 摘流和排空依据 |
+| `plugin_inflight` | plugin_id | 流量摘除和排空依据 |
 | `plugin_classloader_live` | plugin_id, version | 卸载泄漏检测 |
 
 不要把客户 ID、订单号等高基数字段直接作为指标标签；它们应进入日志或追踪属性。
@@ -409,7 +409,7 @@ pluginManager.addPluginStateListener(event -> {
 | `Plugin.start()` 抛异常或链接错误 | 状态变为 `FAILED` | 读取 failedException，卸载并回滚 |
 | 可选依赖启动失败 | 依赖方继续启动 | 标记降级并告警 |
 | 调用 `stopPlugins()` | 3.15.0 会触发并发修改异常 | 复制已启动列表，逆序逐个 `stopPlugin(id)` |
-| `Plugin.stop()` 失败 | 可能进入 `FAILED` 或异常上抛 | 保持摘流，禁止删除，人工介入 |
+| `Plugin.stop()` 失败 | 可能进入 `FAILED` 或异常上抛 | 保持流量摘除状态，禁止删除，人工介入 |
 | 类加载器关闭后仍被引用 | JVM 无法回收 | 检查线程、静态缓存、监听器和 TCCL |
 | 监听器抛异常 | 可能中断当前生命周期调用 | 监听器内部兜底并异步处理 |
 | 外部修改 enabled/disabled 文件 | 不自动刷新 | 统一走控制面 API |
@@ -427,7 +427,7 @@ pluginManager.addPluginStateListener(event -> {
 
 ### 发布与回滚
 
-- [ ] 升级前摘流和在途请求排空。
+- [ ] 升级前完成流量摘除和在途请求排空。
 - [ ] 新版本启动失败回滚。
 - [ ] 新版本健康检查失败回滚。
 - [ ] 回滚版本也失败时进入人工介入状态。
@@ -452,7 +452,7 @@ pluginManager.addPluginStateListener(event -> {
 | 生命周期审计 | `PluginLifecycleListener`、`PluginOperationResult` |
 | 扩展注册表和冲突检查 | `ExtensionCatalog` |
 | 调用日志、耗时、追踪和容错切面 | `ExtensionInvoker`、`ExtensionInterceptor` |
-| 健康、就绪和更新前摘流 | `PluginHealthService` 及三个治理扩展点 |
+| 健康、就绪和更新前流量摘除 | `PluginHealthService` 及三个治理扩展点 |
 | 类来源、依赖方、失败和重复宿主 API 诊断 | `PluginDiagnostics` |
 | Spring Bean/Controller 随插件状态注册和注销 | `PluginBeanRegistry`、`SpringPluginLifecycleSynchronizer` |
 | 下载协议、摘要、大小、压缩结构和禁止类校验 | `SecureFileDownloader`、`PluginArtifactVerifier` |
@@ -464,7 +464,7 @@ pluginManager.addPluginStateListener(event -> {
 1. 使用 `DownloadPolicy` 固化平台准入限制，并把安全下载器和验证器注入更新仓库。
 2. 为每个 `PluginManager` 创建唯一的 `PluginLifecycleManager`，所有生命周期入口都经过它。
 3. 宿主调用扩展时统一经过 `ExtensionInvoker`，在此接入指标、追踪和熔断实现。
-4. 插件提供健康、就绪和摘流扩展；没有声明时默认视为通过，严格平台可以在发布规则层强制要求。
+4. 插件提供健康、就绪和流量摘除扩展；没有声明时默认视为通过，严格平台可以在发布规则层强制要求。
 5. 使用 `TransactionalPluginUpdateManager` 执行安装和升级；旧的 `installPlugin/updatePlugin` 兼容入口也会转入同一事务流程。
 6. Spring 应用使用 `ExtendedSpringPluginManager`，插件停止、失败或卸载时同步销毁 Bean 和请求映射。
 7. 运维接口只返回 `ExtensionCatalog` 和 `PluginDiagnosticReport` 这类宿主基础类型对象，避免长期持有插件实例或插件 `Class`。

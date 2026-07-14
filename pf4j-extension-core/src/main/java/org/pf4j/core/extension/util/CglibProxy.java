@@ -21,7 +21,7 @@ public class CglibProxy implements MethodInterceptor {
     /**
      * 接收实际方法调用的目标对象。
      */
-    private Object target;
+    private final Object target;
 
     /**
      * 创建绑定指定目标对象的 CGLIB 方法拦截器。
@@ -45,8 +45,7 @@ public class CglibProxy implements MethodInterceptor {
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(objectTarget.getClass());
         enhancer.setCallback(target);
-        Object result = enhancer.create();
-        return result;
+        return enhancer.create();
     }
 
     /**

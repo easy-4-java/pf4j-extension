@@ -16,6 +16,7 @@ import org.pf4j.PluginWrapper;
 import org.pf4j.RuntimeMode;
 import org.pf4j.core.extension.annotation.ExtensionMapping;
 import org.pf4j.core.extension.annotation.Primary;
+import org.pf4j.core.extension.exception.ExtensionConflictException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

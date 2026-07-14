@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.pf4j.ExtensionFactory;
 import org.pf4j.core.extension.ExtensionResolver;
@@ -16,7 +17,6 @@ import org.pf4j.spring.SpringPluginManager;
 import org.pf4j.spring.extension.event.SpringPluginEventPublisher;
 import org.pf4j.spring.extension.lifecycle.SpringPluginLifecycleSynchronizer;
 import org.pf4j.spring.extension.registry.DynamicControllerRegistry;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -30,18 +30,21 @@ public class ExtendedSpringPluginManager extends SpringPluginManager implements 
 
 	/**
 	 * 是否由 Spring 扩展工厂自动装配扩展实例。
-	 */
-	private final boolean autowire;
+     */
+	@Getter
+    private final boolean autowire;
 
 	/**
 	 * 是否在同一插件管理器内复用扩展实例。
-	 */
-	private final boolean singleton;
+     */
+	@Getter
+    private final boolean singleton;
 
 	/**
 	 * 是否将带 Spring 组件注解的 PF4J 扩展注入应用上下文。
-	 */
-	private final boolean injectable;
+     */
+	@Getter
+    private final boolean injectable;
 
 	/**
 	 * 插件管理器初始化状态，用于保证初始化和销毁操作幂等。
@@ -55,8 +58,9 @@ public class ExtendedSpringPluginManager extends SpringPluginManager implements 
 
 	/**
 	 * 提供严格启动、安全停止和串行卸载的核心生命周期管理器。
-	 */
-	private final PluginLifecycleManager lifecycleManager;
+     */
+	@Getter
+    private final PluginLifecycleManager lifecycleManager;
 
 	/**
 	 * 插件状态与 Spring Bean 生命周期同步器。
@@ -178,34 +182,7 @@ public class ExtendedSpringPluginManager extends SpringPluginManager implements 
 		}
 	}
 
-	/**
-	 * 判断扩展实例是否启用 Spring 自动装配。
-	 *
-	 * @return 启用自动装配时返回 {@code true}
-	 */
-	public boolean isAutowire() {
-		return autowire;
-	}
-
-	/**
-	 * 判断扩展实例是否按单例方式复用。
-	 *
-	 * @return 启用单例扩展工厂时返回 {@code true}
-	 */
-	public boolean isSingleton() {
-		return singleton;
-	}
-
-	/**
-	 * 判断是否将 Spring 组件扩展注入应用上下文。
-	 *
-	 * @return 启用扩展注入时返回 {@code true}
-	 */
-	public boolean isInjectable() {
-		return injectable;
-	}
-
-	/**
+    /**
 	 * 获取当前初始化状态。
 	 *
 	 * @return 已成功初始化且尚未销毁时返回 {@code true}
@@ -223,16 +200,7 @@ public class ExtendedSpringPluginManager extends SpringPluginManager implements 
 		return new ExtensionResolver(this);
 	}
 
-	/**
-	 * 获取受控插件生命周期管理器。
-	 *
-	 * @return 当前 Spring 插件管理器使用的生命周期管理器
-	 */
-	public PluginLifecycleManager getLifecycleManager() {
-		return lifecycleManager;
-	}
-
-	/**
+    /**
 	 * 初始化失败后尽力停止并卸载插件，同时保留全部清理异常。
 	 *
 	 * @param initializationException 触发清理的原始初始化异常，清理异常将附加到该异常

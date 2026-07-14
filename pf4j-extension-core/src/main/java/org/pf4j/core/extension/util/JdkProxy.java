@@ -20,7 +20,7 @@ public class JdkProxy implements InvocationHandler {
     /**
      * 接收实际接口方法调用的目标对象。
      */
-    private Object target;
+    private final Object target;
 
     /**
      * 创建绑定指定目标对象的 JDK 调用处理器。

@@ -40,8 +40,9 @@ public class ExtendedExtensionsInjector extends ExtensionsInjector {
 	 * @throws ClassCastException 当应用上下文的 BeanFactory 不是
 	 *         {@link AbstractAutowireCapableBeanFactory} 时抛出
 	 */
-	public ExtendedExtensionsInjector(SpringPluginManager pluginManager, DynamicControllerRegistry dynamicControllerRegistry,
-			ApplicationContext applicationContext) {
+	public ExtendedExtensionsInjector(SpringPluginManager pluginManager,
+									  DynamicControllerRegistry dynamicControllerRegistry,
+									  ApplicationContext applicationContext) {
 		super(Objects.requireNonNull(pluginManager, "pluginManager must not be null"),
 				(AbstractAutowireCapableBeanFactory) Objects
 						.requireNonNull(applicationContext, "applicationContext must not be null")
