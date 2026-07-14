@@ -131,6 +131,18 @@ PluginUpdateResult result = updates.updateTransactional("payment-plugin", "2.1.0
 
 `installPlugin` 和 `updatePlugin` 兼容入口在 `TransactionalPluginUpdateManager` 中也会自动转入事务流程。强隔离仍需使用独立进程或容器；PF4J 类加载器不是安全沙箱。
 
+### Spring 插件状态事件
+
+`SpringPluginStateChangedEvent` 是不持有插件运行对象的完整状态快照，包含：
+
+- 事件 ID、发生时间和状态转换；
+- 插件标准描述符、必选/可选依赖；
+- 插件路径、运行模式、宿主版本；
+- 插件管理器、类加载器类型和扩展实现类名；
+- 最外层异常、根异常以及字符串形式的异常链。
+
+事件不保存 `PluginWrapper`、插件实例、插件类型或实际类加载器，适合异步监听、审计落库和管理界面展示。Spring 事件监听器异常会被隔离，不会反向中断 PF4J 生命周期操作。
+
 ## 包名迁移
 
 本次整合不保留旧包的重复实现，迁移关系如下：
