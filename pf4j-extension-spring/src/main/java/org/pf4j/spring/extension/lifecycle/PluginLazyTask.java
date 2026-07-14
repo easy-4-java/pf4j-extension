@@ -20,21 +20,42 @@ import java.util.Objects;
 
 import lombok.extern.slf4j.Slf4j;
 import org.pf4j.PluginManager;
+import org.pf4j.core.extension.PluginLifecycleManager;
 
+/**
+ * 延迟加载并启动全部 PF4J 插件的一次性定时任务。
+ *
+ * <p>任务无论成功或失败都会在本次执行结束时取消，防止同一个 {@link TimerTask} 被重复调度。</p>
+ *
+ * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ */
 @Slf4j
 public class PluginLazyTask extends TimerTask {
 
+	/**
+	 * 执行插件批量加载和启动操作的 PF4J 管理器。
+	 */
 	private final PluginManager pluginManager;
 	
+	/**
+	 * 创建插件延迟启动任务。
+	 *
+	 * @param pluginManager PF4J 插件管理器
+	 * @throws NullPointerException 当 {@code pluginManager} 为 {@code null} 时抛出
+	 */
 	public PluginLazyTask(PluginManager pluginManager) {
 		this.pluginManager = Objects.requireNonNull(pluginManager, "pluginManager must not be null");
 	}
 
+	/**
+	 * 加载并启动全部插件，执行结束后取消当前任务。
+	 *
+	 * @throws RuntimeException 当插件加载或启动失败时记录日志并继续抛出
+	 */
 	@Override
 	public void run() {
 		try {
-			pluginManager.loadPlugins();
-			pluginManager.startPlugins();
+			new PluginLifecycleManager(pluginManager).loadAllAndStartStrictly();
 		} catch (RuntimeException e) {
 			log.error("Failed to lazily load and start PF4J plugins", e);
 			throw e;

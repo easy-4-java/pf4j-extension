@@ -18,22 +18,27 @@ package org.pf4j.spring.extension.registry;
 import java.io.IOException;
 
 /**
- * TODO
- * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
+ * Spring MVC Controller 动态注册接口。
+ *
+ * <p>统一封装运行时 Controller Bean 与请求映射的注册和移除操作，供 PF4J 扩展注入器使用。</p>
+ *
+ * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 public interface DynamicControllerRegistry {
 
     /**
-     * 动态注册SpringMVC Controller到Spring上下文
-     * @param controllerBeanName	: The name of controller 
-     * @param controller			: The instance of controller
+     * 将 Controller 实例及其请求映射动态注册到 Spring MVC。
+     *
+     * @param controllerBeanName Controller Bean 名称；为空时实现可以使用 Controller 类型名
+     * @param controller 待注册的 Controller 实例
      */
 	void registerController(String controllerBeanName, Object controller);
 	
     /**
-     * 动态从Spring上下文删除SpringMVC Controller
-     * @param controllerBeanName		: The name of controller 
-     * @throws IOException if io error
+     * 从 Spring 容器和 Spring MVC 请求映射表中移除 Controller。
+     *
+     * @param controllerBeanName 待移除的 Controller Bean 名称
+     * @throws IOException 当移除过程中发生 I/O 错误时抛出
      */
     void removeController(String controllerBeanName) throws IOException;
 	
