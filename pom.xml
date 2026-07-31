@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- 项目坐标与聚合工程基本信息 -->
-    <groupId>io.github.hiwepy</groupId>
+    <groupId>io.github.easy4j</groupId>
     <artifactId>pf4j-extension</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>PF4J extension multi-module parent</description>
-    <url>https://github.com/hiwepy/pf4j-extension</url>
+    <url>https://github.com/easy-4-java/pf4j-extension</url>
 
     <!-- 开源许可证信息，供制品仓库和生成的项目元数据使用 -->
     <licenses>
@@ -32,9 +32,9 @@
     </developers>
     <!-- 源码管理信息，供 Maven Release 等插件定位 Git 仓库 -->
     <scm>
-        <connection>scm:git:https://github.com/hiwepy/pf4j-extension.git</connection>
-        <developerConnection>scm:git:https://github.com/hiwepy/pf4j-extension.git</developerConnection>
-        <url>https://github.com/hiwepy/pf4j-extension</url>
+        <connection>scm:git:https://github.com/easy-4-java/pf4j-extension.git</connection>
+        <developerConnection>scm:git:https://github.com/easy-4-java/pf4j-extension.git</developerConnection>
+        <url>https://github.com/easy-4-java/pf4j-extension</url>
         <tag>HEAD</tag>
     </scm>
     <!-- 制品发布仓库：正式版本进入 release 仓库，快照版本进入 snapshot 仓库 -->
