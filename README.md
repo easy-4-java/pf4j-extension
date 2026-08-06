@@ -1,60 +1,114 @@
 # pf4j-extension
 
-面向 PF4J 的独立扩展组件，统一承载原 `pf4j-extension` 与 `pf4j3-extension` 的能力。项目只保留三个职责清晰的模块：
+[English](./README.md) | [简体中文](./README.zh-CN.md)
 
-| 模块 | 根包 | 能力 |
-| --- | --- | --- |
-| `pf4j-extension-core` | `org.pf4j.core.extension` | 扩展目录、严格生命周期、调用链、健康检查、流量摘除与运行诊断 |
-| `pf4j-extension-spring` | `org.pf4j.spring.extension` | Spring Bean/Controller 动态注册注销、状态事件与容器生命周期 |
-| `pf4j-extension-update` | `org.pf4j.update.extension` | REST/Maven 仓库、制品准入、签名校验、事务更新与自动回滚 |
+![Java](https://img.shields.io/badge/Java-17-orange)
+![License](https://img.shields.io/badge/License-Apache%202.0-blue)
 
-根项目 `io.github.hiwepy:pf4j-extension` 是聚合与依赖管理 POM，不再提供 Jar。应用应按需依赖上表中的模块。
+## Table of Contents
 
-## 版本线
+- [1. Project Overview](#1-project-overview)
+- [2. Features & Status](#2-features--status)
+- [3. Requirements & Compatibility](#3-requirements--compatibility)
+- [4. Architecture & Modules](#4-architecture--modules)
+- [5. Installation](#5-installation)
+- [6. Quick Start](#6-quick-start)
+- [7. Configuration](#7-configuration)
+- [8. Core Usage / API](#8-core-usage--api)
+- [9. Testing & Build](#9-testing--build)
+- [10. Versioning & Branches](#10-versioning--branches)
+- [11. Contributing & License](#11-contributing--license)
 
-| 分支 | Java | PF4J | Spring / pf4j-spring | 组件版本 |
-| --- | --- | --- | --- | --- |
-| `feature/1.0.x` | 8 | 3.15.0 | 5.3.39 / 0.9.0 | `1.0.x.20260630-SNAPSHOT` |
-| `feature/2.0.x` | 17 | 3.15.0 | 6.2.19 / 0.10.0 | `2.0.x.20260630-SNAPSHOT` |
-| `feature/3.0.x` | 21 | 3.15.0 | 7.0.8 / 0.10.0 | `3.0.x.20260630-SNAPSHOT` |
+---
 
-三个版本线使用相同的公开 API 和模块结构，仅调整 JDK、Maven 编译配置及第三方依赖基线。
+## 1. Project Overview
 
-## Maven 依赖
+**pf4j-extension** is a production-oriented extension layer for [PF4J](https://pf4j.org) (Plugin Framework for
+Java), consolidating the capabilities of the former `pf4j-extension` and `pf4j3-extension` projects into one
+multi-module project with three clearly separated modules:
 
-只使用 PF4J 通用能力：
+| Module                    | Root package                | Capability                                                                 |
+| :------------------------ | :-------------------------- | :------------------------------------------------------------------------- |
+| `pf4j-extension-core`     | `org.pf4j.core.extension`   | Extension catalog, strict lifecycle, invocation chain, health checks, traffic draining and runtime diagnostics |
+| `pf4j-extension-spring`   | `org.pf4j.spring.extension` | Dynamic Spring Bean/Controller registration, state events, container lifecycle |
+| `pf4j-extension-update`   | `org.pf4j.update.extension` | REST/Maven repositories, artifact admission, signature verification, transactional update with automatic rollback |
 
-```xml
-<dependency>
-    <groupId>io.github.hiwepy</groupId>
-    <artifactId>pf4j-extension-core</artifactId>
-    <version>2.0.x.20260630-SNAPSHOT</version>
-</dependency>
+The root project `io.github.easy4j:pf4j-extension` is an aggregator and dependency-management POM only — it
+does not produce a runtime jar. Applications depend on the modules above as needed.
+
+| Is                                                       | Is not                                             |
+| :------------------------------------------------------- | :------------------------------------------------- |
+| Lifecycle, invocation, health and update governance for PF4J | A security sandbox — PF4J class loaders are not sandboxes |
+| Works with `org.pf4j:pf4j` 3.15.x                        | A fork or replacement of PF4J itself               |
+| Spring integration via `pf4j-spring`                      | A Spring Boot starter                              |
+
+Typical scenarios:
+
+| Scenario                          | Description                                                |
+| :-------------------------------- | :--------------------------------------------------------- |
+| Strict plugin start/stop          | Batch start with rollback, safe shutdown with reverse stop order |
+| Multi-extension dispatch          | Interceptor chain for logging/metrics/tracing/fault tolerance over extension calls |
+| Zero-downtime plugin updates      | Backup → drain → update → restore dependents → health check → rollback |
+| Plugin operations observability   | Plugin state events, diagnostics reports, health/readiness checks |
+
+## 2. Features & Status
+
+| Capability                                       | Status      | Main API                                                                 |
+| :----------------------------------------------- | :---------- | :----------------------------------------------------------------------- |
+| Lifecycle safety                                 | Implemented | `PluginLifecycleManager` — serial load/start/stop/unload, strict start-state checks, batch failure rollback (avoids the PF4J 3.15.0 concurrent-modification issue on batch stop) |
+| Extension catalog                                | Implemented | `ExtensionCatalog` — immutable metadata snapshot without holding plugin instances; detects duplicate extension IDs and multiple `@Primary` |
+| Invocation governance                            | Implemented | `ExtensionInvoker`, `ExtensionInterceptor` — responsibility-chain logging, metrics, tracing and fault-tolerant extensions |
+| Health & traffic draining                        | Implemented | `PluginHealthService` — aggregate health, readiness, drain-before-update/stop with timeout |
+| Runtime diagnostics                              | Implemented | `PluginDiagnostics` — dependents, extension classes, failure causes, class origins, duplicated host API bundling |
+| Spring synchronization                           | Implemented | `PluginBeanRegistry`, `SpringPluginLifecycleSynchronizer` — register beans/controllers on start, unregister precisely by ownership on stop/failure/unload |
+| Artifact admission                               | Implemented | `PluginArtifactVerifier`, `SecureFileDownloader` — protocol, size, SHA-512, archive scale, path traversal, forbidden classes, optional detached signature checks |
+| Transactional update                             | Implemented | `TransactionalPluginUpdateManager` — backup, drain, update, dependent restore, health check, automatic rollback and result listeners |
+| Spring state events                              | Implemented | `SpringPluginStateChangedEvent` — dependency-free full state snapshot, safe for async listeners/audit |
+| Unit tests                                       | Implemented | JUnit 5 tests in all three modules (`src/test`)                          |
+
+## 3. Requirements & Compatibility
+
+| Requirement | Version                                    |
+| :---------- | :----------------------------------------- |
+| JDK         | 8+ (this branch)                           |
+| Maven       | 3.0+ (wrapper included)                    |
+| PF4J        | 3.15.0                                     |
+| pf4j-spring | 0.9.0                                      |
+| pf4j-update | 2.3.0                                      |
+| Spring      | 5.3.39 (`spring-core`/`beans`/`context`/`web`/`webmvc`) |
+
+Version lines of the easy4j project:
+
+| Branch        | JDK  | Spring / pf4j-spring | Version pattern | Notes                       |
+| :------------ | :--- | :------------------- | :-------------- | :-------------------------- |
+| `feature/1.0.x` | 8    | 5.3.39 / 0.9.0       | `1.0.x.*`       | This README, current branch |
+| `feature/2.0.x` | 17   | 6.2.19 / 0.10.0      | `2.0.x.*`       | JDK 17 line                 |
+| `feature/3.0.x` | 21   | 7.0.8 / 0.10.0       | `3.0.x.*`       | JDK 21 line                 |
+
+All three lines share the same public API and module structure; only the JDK, Maven compiler settings and
+third-party baselines change. Do not use a higher line's jar on an older JDK. Detailed constraints are in
+[COMPATIBILITY.md](COMPATIBILITY.md).
+
+## 4. Architecture & Modules
+
+```text
+         +--------- pf4j-extension ---------+
+         |                                   |
+         v                                   v
+   pf4j-extension-core             pf4j-extension-update
+   org.pf4j.core.extension        org.pf4j.update.extension
+   (lifecycle/catalog/            (repositories/security/
+    invocation/health/diag)        transactional update)
+         |                                   |
+         |       org.pf4j:pf4j 3.15.x        |
+         |                                   |
+         v
+   pf4j-extension-spring
+   org.pf4j.spring.extension
+   (beans/controllers/events)
 ```
 
-集成 Spring 与动态 Controller：
-
-```xml
-<dependency>
-    <groupId>io.github.hiwepy</groupId>
-    <artifactId>pf4j-extension-spring</artifactId>
-    <version>2.0.x.20260630-SNAPSHOT</version>
-</dependency>
-```
-
-接入插件更新仓库：
-
-```xml
-<dependency>
-    <groupId>io.github.hiwepy</groupId>
-    <artifactId>pf4j-extension-update</artifactId>
-    <version>2.0.x.20260630-SNAPSHOT</version>
-</dependency>
-```
-
-`pf4j-extension-update` 中 Maven 仓库能力依赖的 `spring-cloud-deployer-resource-maven` 是可选依赖；使用 `MavenUpdateRepository` 或 `MavenFileDownloader` 时，应用需要显式引入与自身 Spring 版本兼容的该组件。
-
-## 模块关系
+Module relationships:
 
 ```text
 pf4j-extension-spring
@@ -66,22 +120,51 @@ pf4j-extension-update
 └── org.pf4j:pf4j-update
 ```
 
-`core` 通过 Maven Enforcer 禁止引入 Spring、`pf4j-spring` 和 `pf4j-update`，保证其可以在纯 Java/PF4J 应用中独立使用。
+`core` is guarded by Maven Enforcer against Spring, `pf4j-spring` and `pf4j-update`, so it can be used in
+plain Java/PF4J applications. `pf4j-extension-update` declares
+`spring-cloud-deployer-resource-maven` as **optional** — when using `MavenUpdateRepository` /
+`MavenFileDownloader`, applications must add a version compatible with their own Spring baseline.
 
-## 生产扩展能力
+## 5. Installation
 
-| 场景 | 主要 API | 行为 |
-| --- | --- | --- |
-| 生命周期安全 | `PluginLifecycleManager` | 串行加载/启动/停止/卸载，严格检查启动状态，批量失败逆序回滚，规避 PF4J 3.15.0 批量停止并发修改问题 |
-| 扩展目录 | `ExtensionCatalog` | 生成不持有插件实例的不可变元数据快照，校验重复扩展 ID 和多个 `@Primary` |
-| 调用治理 | `ExtensionInvoker`、`ExtensionInterceptor` | 责任链式日志、指标、追踪和容错扩展，统一异常边界并保留插件/扩展 ID |
-| 健康与流量摘除 | `PluginHealthService` | 聚合健康、就绪扩展，更新或停止前执行流量摘除与超时等待 |
-| 运行诊断 | `PluginDiagnostics` | 输出依赖方、扩展类、失败原因、类来源，并检测插件重复打包宿主 API |
-| Spring 同步 | `PluginBeanRegistry`、`SpringPluginLifecycleSynchronizer` | 插件启动时注册 Bean/Controller，停止、失败和卸载时按所有权精确注销 |
-| 制品准入 | `PluginArtifactVerifier`、`SecureFileDownloader` | 协议、大小、SHA-512、压缩规模、路径穿越、禁止类和可选离线签名校验 |
-| 事务更新 | `TransactionalPluginUpdateManager` | 备份、流量摘除、更新、依赖方恢复、健康检查、自动回滚和结果监听 |
+Artifacts are published to the aliyun repository and GitHub Releases; they are **not** on Maven Central yet.
+Only PF4J's general capability is needed:
 
-### 严格启动与安全关闭
+```xml
+<dependency>
+    <groupId>io.github.easy4j</groupId>
+    <artifactId>pf4j-extension-core</artifactId>
+    <version>2.0.x.x.20260630-SNAPSHOT</version>
+</dependency>
+```
+
+With Spring integration and dynamic controllers:
+
+```xml
+<dependency>
+    <groupId>io.github.easy4j</groupId>
+    <artifactId>pf4j-extension-spring</artifactId>
+    <version>2.0.x.x.20260630-SNAPSHOT</version>
+</dependency>
+```
+
+With the plugin update repository:
+
+```xml
+<dependency>
+    <groupId>io.github.easy4j</groupId>
+    <artifactId>pf4j-extension-update</artifactId>
+    <version>2.0.x.x.20260630-SNAPSHOT</version>
+</dependency>
+```
+
+```groovy
+implementation 'io.github.easy4j:pf4j-extension-core:2.0.x.x.20260630-SNAPSHOT'
+```
+
+## 6. Quick Start
+
+Strict startup and safe shutdown:
 
 ```java
 PluginManager pluginManager = new DefaultPluginManager(pluginsRoot);
@@ -90,11 +173,11 @@ PluginLifecycleManager lifecycle = new PluginLifecycleManager(pluginManager);
 lifecycle.addListener(result -> audit(result));
 lifecycle.loadAllAndStartStrictly();
 
-// 应用关闭时调用，内部复制并逆序停止列表。
+// On application shutdown: copies and stops the list in reverse order.
 lifecycle.unloadAllSafely();
 ```
 
-### 调用链、健康检查与诊断
+Invocation chain, health checks and diagnostics:
 
 ```java
 ExtensionInvoker invoker = new ExtensionInvoker(Arrays.asList(
@@ -110,9 +193,24 @@ PluginDiagnostics diagnostics = new PluginDiagnostics(pluginManager);
 PluginDiagnosticReport report = diagnostics.diagnose("payment-plugin");
 ```
 
-插件可按需实现 `PluginHealthCheck`、`PluginReadinessCheck` 和 `PluginDrainHook` 扩展点。健康与就绪结果为 `UP` 后，事务更新才会提交新版本。
+Plugins may implement the `PluginHealthCheck`, `PluginReadinessCheck` and `PluginDrainHook` extension points.
+The transactional update commits a new version only after health and readiness report `UP`.
 
-### 安全下载与事务更新
+## 7. Configuration
+
+There is no properties file; behavior is configured programmatically:
+
+| Concern              | Configuration point                                        |
+| :------------------- | :--------------------------------------------------------- |
+| Download limits      | `DownloadPolicy` constructor / `DownloadPolicy.secureDefaults()` |
+| Verification order   | `PluginArtifactVerifier(FileVerifier delegate, List<ArtifactVerificationPolicy> policies)` |
+| Transaction timeout  | `TransactionalPluginUpdateManager(..., long drainTimeoutSeconds)` |
+| Interceptor chain    | `ExtensionInvoker(List<ExtensionInterceptor>)`             |
+| Spring wiring        | `ExtendedSpringPluginManager` constructors (plugins root, autowire, singleton, injectable) |
+
+## 8. Core Usage / API
+
+Secure download and transactional update:
 
 ```java
 DownloadPolicy policy = DownloadPolicy.secureDefaults();
@@ -129,44 +227,65 @@ TransactionalPluginUpdateManager updates = new TransactionalPluginUpdateManager(
 PluginUpdateResult result = updates.updateTransactional("payment-plugin", "2.1.0");
 ```
 
-`installPlugin` 和 `updatePlugin` 兼容入口在 `TransactionalPluginUpdateManager` 中也会自动转入事务流程。强隔离仍需使用独立进程或容器；PF4J 类加载器不是安全沙箱。
+`installPlugin` and `updatePlugin` (compatibility entries) are routed into the transactional flow as well.
+Strong isolation still requires a separate process or container — PF4J class loaders are not a security sandbox.
 
-### Spring 插件状态事件
+Spring plugin state events:
 
-`SpringPluginStateChangedEvent` 是不持有插件运行对象的完整状态快照，包含：
+`SpringPluginStateChangedEvent` is a complete state snapshot that does **not** hold the plugin runtime object.
+It contains:
 
-- 事件 ID、发生时间和状态转换；
-- 插件标准描述符、必选/可选依赖；
-- 插件路径、运行模式、宿主版本；
-- 插件管理器、类加载器类型和扩展实现类名；
-- 最外层异常、根异常以及字符串形式的异常链。
+- event id, occurrence time and the state transition;
+- the plugin descriptor, required/optional dependencies;
+- plugin path, runtime mode, host version;
+- plugin manager class name, class-loader type and extension implementation class names;
+- outermost exception, root exception and the string form of the exception cause chain.
 
-事件不保存 `PluginWrapper`、插件实例、插件类型或实际类加载器，适合异步监听、审计落库和管理界面展示。Spring 事件监听器异常会被隔离，不会反向中断 PF4J 生命周期操作。
+The event never keeps `PluginWrapper`, plugin instances, plugin classes or the actual class loader, so it is
+safe for async listeners, audit persistence and admin UIs. Listener exceptions are isolated and do not
+interrupt the PF4J lifecycle operation.
 
-## 包名迁移
-
-本次整合不保留旧包的重复实现，迁移关系如下：
-
-| 旧包 | 新包 |
-| --- | --- |
-| `io.github.hiwepy.pf4j.*` | `org.pf4j.core.extension.*` |
-| `org.pf4j.spring.boot.ext.*` | `org.pf4j.spring.extension.*` |
-| `org.pf4j.spring.boot.ext.update.*` | `org.pf4j.update.extension.*` |
-| `org.pf4j.spring.boot.ext.property.*` | `org.pf4j.update.extension.property.*` |
-
-从 `pf4j3-extension` 迁移时，应删除旧坐标，并根据实际能力选择 `core`、`spring` 或 `update` 模块，同时更新 Java import。
-
-## 构建
-
-使用与分支对应的 JDK 执行：
+## 9. Testing & Build
 
 ```bash
-mvn clean verify
+./mvnw clean verify
 ```
 
-详细版本约束见 [COMPATIBILITY.md](COMPATIBILITY.md)。
+- JUnit 5 (Jupiter) tests cover all three modules, e.g. `PluginLifecycleManagerTest`, `ExtensionInvokerTest`,
+  `PluginHealthServiceTest`, `PluginDiagnosticsTest`, `ExtensionCatalogTest` (core),
+  `ExtendedSpringPluginManagerTest`, `SpringPluginEventPublisherTest`, `PluginBeanRegistryTest`,
+  `InjectorUtilsTest` (spring), `RestTemplateUpdateRepositoryTest`, `PluginArtifactSecurityTest`,
+  `FileSystemPluginArtifactStoreTest`, `TransactionalPluginUpdateManagerTest` (update).
+- JaCoCo is configured with a line-coverage rule of 90% (`haltOnFailure=false`).
+- Use the JDK matching the branch: JDK 8 for `feature/2.0.x`, JDK 17 for `feature/2.0.x`, JDK 21 for
+  `feature/3.0.x`.
 
-PF4J 源码行为与完整实践见：
+## 10. Versioning & Branches
 
-- [实践一：业务扩展点与多实现插件](docs/PF4J_3.15_PRACTICE_01_BUSINESS_EXTENSION.md)
-- [实践二：生产发布、观测与回滚](docs/PF4J_3.15_PRACTICE_02_PRODUCTION_GOVERNANCE.md)
+| Branch        | JDK  | Version pattern | Maintenance                                      |
+| :------------ | :--- | :-------------- | :----------------------------------------------- |
+| `feature/1.0.x` | 8    | `1.0.x.*`       | Current branch; Spring 5.3.x / pf4j-spring 0.9.x |
+| `feature/2.0.x` | 17   | `2.0.x.*`       | Spring 6.2.x / pf4j-spring 0.10.x                |
+| `feature/3.0.x` | 21   | `3.0.x.*`       | Spring 7.0.x / pf4j-spring 0.10.x                |
+
+Artifacts are distributed via the aliyun Maven repository and GitHub Releases.
+
+**Package migration from the consolidated projects** (duplicate old implementations were dropped):
+
+| Old package                          | New package                        |
+| :----------------------------------- | :--------------------------------- |
+| `io.github.hiwepy.pf4j.*`            | `org.pf4j.core.extension.*`        |
+| `org.pf4j.spring.boot.ext.*`         | `org.pf4j.spring.extension.*`      |
+| `org.pf4j.spring.boot.ext.update.*`  | `org.pf4j.update.extension.*`      |
+
+When migrating from `pf4j3-extension`, remove the old coordinates, pick `core` / `spring` / `update` by
+capability and update the Java imports.
+
+## 11. Contributing & License
+
+Contributions are welcome — please open an issue first. In-depth PF4J practice guides live in the docs:
+
+- [Practice 1: business extension points and multi-implementation plugins](docs/PF4J_3.15_PRACTICE_01_BUSINESS_EXTENSION.md)
+- [Practice 2: production release, observability and rollback](docs/PF4J_3.15_PRACTICE_02_PRODUCTION_GOVERNANCE.md)
+
+This project is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
