@@ -2,9 +2,6 @@
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
-![Java](https://img.shields.io/badge/Java-21-orange)
-![License](https://img.shields.io/badge/License-Apache%202.0-blue)
-
 ## 目录
 
 - [1. 项目概述](#1-项目概述)
@@ -18,8 +15,6 @@
 - [9. 测试与构建](#9-测试与构建)
 - [10. 版本线与分支](#10-版本线与分支)
 - [11. 贡献与许可](#11-贡献与许可)
-
----
 
 ## 1. 项目概述
 
@@ -239,7 +234,7 @@ Spring 插件状态事件：
 
 - 三个模块均使用 JUnit 5（Jupiter）测试，例如 core 模块的 `PluginLifecycleManagerTest`、`ExtensionInvokerTest`、`PluginHealthServiceTest`、`PluginDiagnosticsTest`、`ExtensionCatalogTest`；spring 模块的 `ExtendedSpringPluginManagerTest`、`SpringPluginEventPublisherTest`、`PluginBeanRegistryTest`、`InjectorUtilsTest`；update 模块的 `RestTemplateUpdateRepositoryTest`、`PluginArtifactSecurityTest`、`FileSystemPluginArtifactStoreTest`、`TransactionalPluginUpdateManagerTest`。
 - 已配置 JaCoCo 行覆盖率 90% 门禁（`haltOnFailure=false`）。
-- 使用与分支匹配的 JDK：`feature/3.0.x` 用 JDK 8，`feature/2.0.x` 用 JDK 17，`feature/3.0.x` 用 JDK 21。
+- 使用与分支匹配的 JDK：`feature/1.0.x` 用 JDK 8，`feature/2.0.x` 用 JDK 17，`feature/3.0.x` 用 JDK 21。
 
 ## 10. 版本线与分支
 

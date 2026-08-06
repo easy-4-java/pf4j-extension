@@ -2,9 +2,6 @@
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
-![Java](https://img.shields.io/badge/Java-21-orange)
-![License](https://img.shields.io/badge/License-Apache%202.0-blue)
-
 ## Table of Contents
 
 - [1. Project Overview](#1-project-overview)
@@ -18,8 +15,6 @@
 - [9. Testing & Build](#9-testing--build)
 - [10. Versioning & Branches](#10-versioning--branches)
 - [11. Contributing & License](#11-contributing--license)
-
----
 
 ## 1. Project Overview
 
@@ -257,7 +252,7 @@ interrupt the PF4J lifecycle operation.
   `InjectorUtilsTest` (spring), `RestTemplateUpdateRepositoryTest`, `PluginArtifactSecurityTest`,
   `FileSystemPluginArtifactStoreTest`, `TransactionalPluginUpdateManagerTest` (update).
 - JaCoCo is configured with a line-coverage rule of 90% (`haltOnFailure=false`).
-- Use the JDK matching the branch: JDK 8 for `feature/3.0.x`, JDK 17 for `feature/2.0.x`, JDK 21 for
+- Use the JDK matching the branch: JDK 8 for `feature/1.0.x`, JDK 17 for `feature/2.0.x`, JDK 21 for
   `feature/3.0.x`.
 
 ## 10. Versioning & Branches
