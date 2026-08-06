@@ -20,11 +20,14 @@
         </license>
     </licenses>
     
-    <developers>
+        <developers>
         <developer>
-            <name>hiwepy</name>
+            <name>Loong Wan</name>
             <email>hiwepy@gmail.com</email>
-            <url>https://github.com/hiwepy</url>
+            <url>https://github.com/loong10k</url>
+            <roles>
+                <role>developer</role>
+            </roles>
             <timezone>+8</timezone>
         </developer>
     </developers>
