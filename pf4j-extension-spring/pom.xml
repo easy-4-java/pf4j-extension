@@ -7,7 +7,7 @@
     <parent>
         <groupId>io.github.easy4j</groupId>
         <artifactId>pf4j-extension</artifactId>
-        <version>${revision}</version>
+        <version>3.0.x.20260630-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -19,7 +19,7 @@
         <dependency>
             <groupId>io.github.easy4j</groupId>
             <artifactId>pf4j-extension-core</artifactId>
-            <version>${revision}</version>
+            <version>3.0.x.20260630-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.pf4j</groupId>
