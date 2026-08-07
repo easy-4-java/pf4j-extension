@@ -4,6 +4,8 @@
 
 [![Java](https://img.shields.io/badge/Java-17-orange)](https://github.com/easy-4-java/pf4j-extension) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](./LICENSE)
 
+pf4j-extension is a production-oriented extension layer for PF4J (Plugin Framework for
+
 ## Table of Contents
 
 - [1. Project Overview](#1-project-overview)
