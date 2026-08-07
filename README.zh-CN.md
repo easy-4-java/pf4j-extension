@@ -4,6 +4,8 @@
 
 [![Java](https://img.shields.io/badge/Java-21-orange)](https://github.com/easy-4-java/pf4j-extension) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](./LICENSE)
 
+pf4j-extension 是面向 PF4J（Java 插件框架）的生产级扩展组件，统一承载原 pf4j-extension 与 pf4j3-extension 的能力，整合为一个多模块项目，只保留三个职责清晰的模块：
+
 ## 目录
 
 - [1. 项目概述](#1-项目概述)
@@ -236,7 +238,7 @@ Spring 插件状态事件：
 
 - 三个模块均使用 JUnit 5（Jupiter）测试，例如 core 模块的 `PluginLifecycleManagerTest`、`ExtensionInvokerTest`、`PluginHealthServiceTest`、`PluginDiagnosticsTest`、`ExtensionCatalogTest`；spring 模块的 `ExtendedSpringPluginManagerTest`、`SpringPluginEventPublisherTest`、`PluginBeanRegistryTest`、`InjectorUtilsTest`；update 模块的 `RestTemplateUpdateRepositoryTest`、`PluginArtifactSecurityTest`、`FileSystemPluginArtifactStoreTest`、`TransactionalPluginUpdateManagerTest`。
 - 已配置 JaCoCo 行覆盖率 90% 门禁（`haltOnFailure=false`）。
-- 使用与分支匹配的 JDK：`feature/1.0.x` 用 JDK 8，`feature/2.0.x` 用 JDK 17，`feature/3.0.x` 用 JDK 21。
+- 使用与分支匹配的 JDK：`feature/3.0.x` 用 JDK 8，`feature/2.0.x` 用 JDK 17，`feature/3.0.x` 用 JDK 21。
 
 ## 10. 版本线与分支
 

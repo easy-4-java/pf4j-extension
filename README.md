@@ -4,6 +4,8 @@
 
 [![Java](https://img.shields.io/badge/Java-21-orange)](https://github.com/easy-4-java/pf4j-extension) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](./LICENSE)
 
+pf4j-extension is a production-oriented extension layer for PF4J (Plugin Framework for
+
 ## Table of Contents
 
 - [1. Project Overview](#1-project-overview)
@@ -254,7 +256,7 @@ interrupt the PF4J lifecycle operation.
   `InjectorUtilsTest` (spring), `RestTemplateUpdateRepositoryTest`, `PluginArtifactSecurityTest`,
   `FileSystemPluginArtifactStoreTest`, `TransactionalPluginUpdateManagerTest` (update).
 - JaCoCo is configured with a line-coverage rule of 90% (`haltOnFailure=false`).
-- Use the JDK matching the branch: JDK 8 for `feature/1.0.x`, JDK 17 for `feature/2.0.x`, JDK 21 for
+- Use the JDK matching the branch: JDK 8 for `feature/3.0.x`, JDK 17 for `feature/2.0.x`, JDK 21 for
   `feature/3.0.x`.
 
 ## 10. Versioning & Branches
