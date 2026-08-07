@@ -125,49 +125,49 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
-                <version>${spring.version}</version>
+                <version>6.2.16</version>
             </dependency>
             <!-- For Spring Framework -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jcl</artifactId>
-                <version>${spring.version}</version>
+                <version>6.2.16</version>
             </dependency>
             <!-- For Spring Framework -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-beans</artifactId>
-                <version>${spring.version}</version>
+                <version>6.2.16</version>
             </dependency>
             <!-- For Spring Framework -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
-                <version>${spring.version}</version>
+                <version>6.2.16</version>
             </dependency>
             <!-- For Spring Framework -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
-                <version>${spring.version}</version>
+                <version>6.2.16</version>
             </dependency>
             <!-- For Spring Framework -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-expression</artifactId>
-                <version>${spring.version}</version>
+                <version>6.2.16</version>
             </dependency>
             <!-- For Spring Framework -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-web</artifactId>
-                <version>${spring.version}</version>
+                <version>6.2.16</version>
             </dependency>
             <!-- For Spring Framework -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
-                <version>${spring.version}</version>
+                <version>6.2.19</version>
             </dependency>
             <!-- For Spring Cloud -->
             <dependency>
