@@ -4,6 +4,8 @@
 
 [![Java](https://img.shields.io/badge/Java-8-orange)](https://github.com/easy-4-java/pf4j-extension) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](./LICENSE)
 
+pf4j-extension 是面向 PF4J（Java 插件框架）的生产级扩展组件，统一承载原 pf4j-extension 与 pf4j3-extension 的能力，整合为一个多模块项目，只保留三个职责清晰的模块：
+
 ## 目录
 
 - [1. 项目概述](#1-项目概述)
