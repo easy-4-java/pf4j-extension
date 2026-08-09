@@ -34,6 +34,9 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Slf4j
+/**
+ * PF4J implementation of the dynamic controller registry for plugin-provided REST controllers.
+ */
 public class Pf4jDynamicControllerRegistry implements DynamicControllerRegistry, ApplicationContextAware {
 
 	/**

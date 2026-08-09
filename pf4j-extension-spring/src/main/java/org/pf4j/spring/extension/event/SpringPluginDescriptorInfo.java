@@ -17,6 +17,9 @@ import lombok.Getter;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Getter
+/**
+ * Data class holding descriptor information about a Spring-managed plugin.
+ */
 public final class SpringPluginDescriptorInfo implements Serializable {
 
     /** 插件唯一标识。 */

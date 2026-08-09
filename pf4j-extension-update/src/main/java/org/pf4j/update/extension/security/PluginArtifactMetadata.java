@@ -8,6 +8,9 @@ import lombok.Getter;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Getter
+/**
+ * Data class holding metadata about a plugin artifact including coordinates, checksums, and signatures.
+ */
 public final class PluginArtifactMetadata {
 
     /** 插件 ID。 */

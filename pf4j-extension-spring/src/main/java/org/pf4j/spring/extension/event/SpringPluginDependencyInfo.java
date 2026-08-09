@@ -14,6 +14,9 @@ import lombok.Getter;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Getter
+/**
+ * Data class holding information about a Spring plugin's dependencies for dependency injection.
+ */
 public final class SpringPluginDependencyInfo implements Serializable {
 
     /** 被依赖插件的唯一标识。 */

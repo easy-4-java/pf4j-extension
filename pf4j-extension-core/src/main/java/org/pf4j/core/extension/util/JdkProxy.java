@@ -15,6 +15,9 @@ import java.lang.reflect.Proxy;
  * @author <a href="https://github.com/partme-ai">PartMe.AI</a>
  */
 @Slf4j
+/**
+ * Utility for creating JDK dynamic proxies for extension interfaces to enable method interception.
+ */
 public class JdkProxy implements InvocationHandler {
 
     /**

@@ -16,6 +16,9 @@ import org.pf4j.PluginState;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Getter
+/**
+ * Report containing diagnostic information about plugin health, dependencies, and runtime state.
+ */
 public final class PluginDiagnosticReport {
 
     /** 插件 ID。 */

@@ -10,6 +10,9 @@ import lombok.Getter;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Getter
+/**
+ * Data class representing the result of a plugin update operation including old and new versions.
+ */
 public final class PluginUpdateResult {
 
     /** 更新操作类型。 */

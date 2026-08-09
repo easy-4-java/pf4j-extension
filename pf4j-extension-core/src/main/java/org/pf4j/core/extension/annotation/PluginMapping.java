@@ -13,7 +13,10 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Documented
 @Inherited
-public @interface PluginMapping {
+public @/**
+ * Annotation that maps a plugin class to its plugin ID for automatic plugin identification and registration.
+ */
+interface PluginMapping {
 
     /**
      * 获取插件标题。

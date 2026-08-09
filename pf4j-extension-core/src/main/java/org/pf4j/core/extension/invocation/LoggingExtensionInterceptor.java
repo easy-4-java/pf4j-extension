@@ -10,6 +10,9 @@ import lombok.extern.slf4j.Slf4j;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Slf4j
+/**
+ * Interceptor that logs extension method entry, exit, and exceptions for debugging and monitoring.
+ */
 public final class LoggingExtensionInterceptor implements ExtensionInterceptor {
 
     /**

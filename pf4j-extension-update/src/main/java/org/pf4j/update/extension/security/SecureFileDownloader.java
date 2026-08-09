@@ -13,6 +13,9 @@ import org.pf4j.update.FileDownloader;
  *
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
+/**
+ * Secure downloader that applies verification policies when downloading plugin artifacts.
+ */
 public final class SecureFileDownloader implements FileDownloader {
 
     /** 实际执行下载的文件下载器。 */

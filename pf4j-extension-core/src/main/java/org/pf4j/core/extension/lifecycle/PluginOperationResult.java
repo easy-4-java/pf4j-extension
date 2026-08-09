@@ -12,6 +12,9 @@ import org.pf4j.PluginState;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Getter
+/**
+ * Data class representing the result of a plugin operation including success status and error details.
+ */
 public final class PluginOperationResult {
 
     /** 插件 ID；加载失败且尚未得到 ID 时可以为空。 */

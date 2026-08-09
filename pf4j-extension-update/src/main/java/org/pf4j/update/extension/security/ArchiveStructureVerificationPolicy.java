@@ -21,6 +21,9 @@ import org.pf4j.update.VerifyException;
  *
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
+/**
+ * Policy that verifies the internal structure of plugin archive files for integrity.
+ */
 public final class ArchiveStructureVerificationPolicy implements ArtifactVerificationPolicy {
 
     /** 下载资源限制策略。 */

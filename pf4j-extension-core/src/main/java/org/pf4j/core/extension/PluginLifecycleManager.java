@@ -24,6 +24,9 @@ import org.pf4j.core.extension.lifecycle.PluginOperationResult;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Slf4j
+/**
+ * Manager for coordinating plugin lifecycle operations and notifying listeners of state changes.
+ */
 public final class PluginLifecycleManager {
 
     /**

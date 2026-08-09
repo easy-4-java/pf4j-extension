@@ -16,6 +16,9 @@ import lombok.Getter;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Getter
+/**
+ * Interface for download policies that control how plugin artifacts are fetched and verified.
+ */
 public final class DownloadPolicy {
 
     /** 允许的 URL 协议集合。 */

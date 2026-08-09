@@ -32,6 +32,9 @@ import org.pf4j.update.UpdateRepository;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Slf4j
+/**
+ * Manager for performing plugin updates with transactional guarantees and rollback support.
+ */
 public class TransactionalPluginUpdateManager extends UpdateManager {
 
     /** PF4J 插件管理器。 */

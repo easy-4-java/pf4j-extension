@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
+/**
+ * Utility class for dependency injection operations in the PF4J Spring integration.
+ */
 public final class InjectorUtils {
 
 	/**

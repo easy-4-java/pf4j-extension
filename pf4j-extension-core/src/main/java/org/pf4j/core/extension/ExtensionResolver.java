@@ -19,6 +19,9 @@ import org.pf4j.core.extension.exception.ExtensionResolutionException;
  *
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
+/**
+ * Interface for resolving extension instances from the plugin framework by extension type.
+ */
 public final class ExtensionResolver {
 
     /**

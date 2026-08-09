@@ -17,6 +17,9 @@ import org.pf4j.update.verifier.CompoundVerifier;
  *
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
+/**
+ * Verifier for plugin artifacts that applies multiple verification policies for security.
+ */
 public final class PluginArtifactVerifier implements FileVerifier {
 
     /** PF4J 基础文件和 SHA-512 校验器。 */
