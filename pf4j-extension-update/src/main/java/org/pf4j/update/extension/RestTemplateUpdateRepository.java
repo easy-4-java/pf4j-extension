@@ -36,6 +36,9 @@ import org.springframework.util.StringUtils;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Slf4j
+/**
+ * Update repository that fetches plugin updates from REST API endpoints.
+ */
 public class RestTemplateUpdateRepository implements UpdateRepository {
 
 	/**

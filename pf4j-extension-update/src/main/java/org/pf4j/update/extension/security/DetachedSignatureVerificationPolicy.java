@@ -19,6 +19,9 @@ import org.pf4j.update.VerifyException;
  *
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
+/**
+ * Policy that verifies detached PGP signatures for plugin artifact integrity.
+ */
 public final class DetachedSignatureVerificationPolicy implements ArtifactVerificationPolicy {
 
     /** 签名算法名称。 */

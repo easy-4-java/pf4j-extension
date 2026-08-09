@@ -14,7 +14,10 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Documented
 @Inherited
-public @interface ExtensionMapping {
+public @/**
+ * Annotation that maps a plugin extension to its declaring plugin class, enabling automatic discovery and registration.
+ */
+interface ExtensionMapping {
 
     /**
      * 获取扩展 ID。

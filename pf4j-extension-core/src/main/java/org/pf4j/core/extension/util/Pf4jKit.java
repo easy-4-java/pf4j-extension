@@ -13,6 +13,9 @@ import java.util.Optional;
  *
  * @author <a href="https://github.com/partme-ai">PartMe.AI</a>
  */
+/**
+ * Utility class providing helper methods for common PF4J operations like plugin lookup and extension retrieval.
+ */
 public final class Pf4jKit {
 
     /**

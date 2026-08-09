@@ -26,6 +26,9 @@ import org.springframework.beans.factory.InitializingBean;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Slf4j
+/**
+ * Extended Spring plugin manager with enhanced lifecycle management and Spring integration features.
+ */
 public class ExtendedSpringPluginManager extends SpringPluginManager implements InitializingBean, DisposableBean {
 
 	/**

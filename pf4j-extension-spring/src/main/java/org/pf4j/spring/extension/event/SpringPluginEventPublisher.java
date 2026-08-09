@@ -21,6 +21,9 @@ import org.springframework.context.ApplicationEventPublisher;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Slf4j
+/**
+ * Publisher for Spring plugin events, bridging PF4J lifecycle events to Spring's application event system.
+ */
 public final class SpringPluginEventPublisher implements PluginStateListener {
 
     /** 为防止异常链异常构造导致无限遍历而设置的最大层数。 */

@@ -15,6 +15,9 @@ import org.pf4j.update.VerifyException;
  *
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
+/**
+ * Policy that verifies plugin releases against a set of security and integrity rules.
+ */
 public final class ReleaseVerificationPolicy implements ArtifactVerificationPolicy {
 
     /** 下载资源限制策略。 */

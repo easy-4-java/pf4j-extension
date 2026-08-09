@@ -20,6 +20,9 @@ import org.springframework.util.StringUtils;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Slf4j
+/**
+ * Utility class providing helper methods for plugin inspection, classloading, and metadata extraction.
+ */
 public final class PluginUtils {
 
 	/**

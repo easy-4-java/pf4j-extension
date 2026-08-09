@@ -22,6 +22,9 @@ import org.springframework.util.StringUtils;
  *
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
+/**
+ * Registry for managing Spring beans provided by plugins, supporting dynamic registration and lookup.
+ */
 public final class PluginBeanRegistry {
 
     /** 支持动态注册和销毁单例的 BeanFactory。 */

@@ -9,6 +9,9 @@ import java.util.Objects;
  *
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
+/**
+ * Interceptor that measures and records the execution time of extension method calls.
+ */
 public final class TimingExtensionInterceptor implements ExtensionInterceptor {
 
     /** 接收调用耗时和失败信息的监听器。 */

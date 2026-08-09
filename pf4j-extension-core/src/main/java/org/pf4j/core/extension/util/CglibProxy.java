@@ -16,6 +16,9 @@ import java.lang.reflect.Method;
  * @author <a href="https://github.com/partme-ai">PartMe.AI</a>
  */
 @Slf4j
+/**
+ * Utility for creating CGLIB-based proxies for extension instances to enable method interception.
+ */
 public class CglibProxy implements MethodInterceptor {
 
     /**

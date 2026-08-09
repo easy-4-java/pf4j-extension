@@ -15,6 +15,9 @@ import lombok.Getter;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Getter
+/**
+ * Data class representing the health status of a plugin including status, message, and timestamp.
+ */
 public final class PluginHealth {
 
     /** 插件健康状态。 */
