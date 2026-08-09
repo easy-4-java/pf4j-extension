@@ -15,7 +15,10 @@ import org.pf4j.PluginWrapper;
  *
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
-public final class PluginHealthService {
+public final /**
+ * Service for managing and executing plugin health checks across the plugin ecosystem.
+ */
+class PluginHealthService {
 
     /** PF4J 插件管理器。 */
     private final PluginManager pluginManager;

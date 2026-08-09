@@ -16,7 +16,10 @@ import org.pf4j.PluginState;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Getter
-public final class PluginMetadata {
+public final /**
+ * Data class holding metadata about a plugin including its ID, version, description, and dependencies.
+ */
+class PluginMetadata {
 
     /** 插件 ID。 */
     private final String pluginId;

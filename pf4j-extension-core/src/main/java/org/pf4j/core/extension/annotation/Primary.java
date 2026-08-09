@@ -14,6 +14,9 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface Primary {
+public @/**
+ * Annotation that marks an extension implementation as the primary/default choice when multiple implementations exist for the same extension point.
+ */
+interface Primary {
 
 }

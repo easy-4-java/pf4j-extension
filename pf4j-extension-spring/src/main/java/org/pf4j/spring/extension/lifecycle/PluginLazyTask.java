@@ -30,6 +30,9 @@ import org.pf4j.core.extension.PluginLifecycleManager;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Slf4j
+/**
+ * Lazy initialization task for plugins that defers plugin loading until first access.
+ */
 public class PluginLazyTask extends TimerTask {
 
 	/**

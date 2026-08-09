@@ -18,7 +18,10 @@ import org.pf4j.core.extension.exception.PluginInvokeException;
  *
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
-public final class ExtensionInvoker {
+public final /**
+ * Invoker that wraps extension instances with interceptor chains for proxied method calls.
+ */
+class ExtensionInvoker {
 
     /** 按调用顺序排列的不可修改拦截器列表。 */
     private final List<ExtensionInterceptor> interceptors;

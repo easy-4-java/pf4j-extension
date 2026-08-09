@@ -22,7 +22,10 @@ import org.springframework.util.StringUtils;
  *
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
-public final class PluginBeanRegistry {
+public final /**
+ * Registry for managing Spring beans provided by plugins, supporting dynamic registration and lookup.
+ */
+class PluginBeanRegistry {
 
     /** 支持动态注册和销毁单例的 BeanFactory。 */
     private final AbstractAutowireCapableBeanFactory beanFactory;

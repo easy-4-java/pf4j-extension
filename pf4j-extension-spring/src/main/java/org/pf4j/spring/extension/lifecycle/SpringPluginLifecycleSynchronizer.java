@@ -13,7 +13,10 @@ import org.pf4j.spring.extension.ExtendedExtensionsInjector;
  *
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
-public final class SpringPluginLifecycleSynchronizer implements PluginStateListener {
+public final /**
+ * Synchronizer that coordinates plugin lifecycle with Spring application context lifecycle events.
+ */
+class SpringPluginLifecycleSynchronizer implements PluginStateListener {
 
     /** 执行插件扩展注册和移除的注入器。 */
     private final ExtendedExtensionsInjector extensionsInjector;

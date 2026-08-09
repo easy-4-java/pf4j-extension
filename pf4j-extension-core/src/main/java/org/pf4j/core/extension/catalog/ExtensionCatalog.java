@@ -33,7 +33,10 @@ import org.pf4j.core.extension.exception.ExtensionConflictException;
  *
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
-public final class ExtensionCatalog implements PluginStateListener, AutoCloseable {
+public final /**
+ * Interface for a catalog that provides metadata about available extensions and their capabilities.
+ */
+class ExtensionCatalog implements PluginStateListener, AutoCloseable {
 
     /** PF4J 插件管理器。 */
     private final PluginManager pluginManager;

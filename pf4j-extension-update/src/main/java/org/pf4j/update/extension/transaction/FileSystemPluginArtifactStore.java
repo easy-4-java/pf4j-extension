@@ -15,7 +15,10 @@ import java.util.Objects;
  *
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
-public final class FileSystemPluginArtifactStore implements PluginArtifactStore {
+public final /**
+ * File system-based storage for plugin artifacts with support for atomic operations.
+ */
+class FileSystemPluginArtifactStore implements PluginArtifactStore {
 
     /** PF4J 正式插件目录。 */
     private final Path pluginsRoot;

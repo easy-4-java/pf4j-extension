@@ -15,6 +15,9 @@ import org.pf4j.core.extension.PluginLifecycleManager;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Slf4j
+/**
+ * JVM shutdown hook that ensures graceful plugin shutdown when the application terminates.
+ */
 public class Pf4jShutdownHook extends Thread {
 	
 	/**

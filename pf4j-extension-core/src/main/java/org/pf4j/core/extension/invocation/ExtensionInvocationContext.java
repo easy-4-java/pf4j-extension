@@ -17,7 +17,10 @@ import lombok.Getter;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Getter
-public final class ExtensionInvocationContext {
+public final /**
+ * Context object carrying information about an extension method invocation including method, arguments, and result.
+ */
+class ExtensionInvocationContext {
 
     /** 插件 ID。 */
     private final String pluginId;

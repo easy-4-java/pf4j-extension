@@ -21,7 +21,10 @@ import org.springframework.context.ApplicationEvent;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Getter
-public final class SpringPluginStateChangedEvent extends ApplicationEvent {
+public final /**
+ * Spring application event published when a plugin's state changes (started, stopped, etc.).
+ */
+class SpringPluginStateChangedEvent extends ApplicationEvent {
 
     /** 序列化版本号。 */
     private static final long serialVersionUID = 1L;

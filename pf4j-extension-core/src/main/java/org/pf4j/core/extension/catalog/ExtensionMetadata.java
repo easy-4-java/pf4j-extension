@@ -11,7 +11,10 @@ import lombok.Getter;
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @Getter
-public final class ExtensionMetadata {
+public final /**
+ * Data class holding metadata about a plugin extension including its class, plugin ID, and descriptor information.
+ */
+class ExtensionMetadata {
 
     /** 提供扩展的插件 ID。 */
     private final String pluginId;

@@ -28,7 +28,10 @@ import org.pf4j.PluginWrapper;
  *
  * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
-public final class PluginDiagnostics {
+public final /**
+ * Service for collecting and analyzing diagnostic information about plugins and their runtime environment.
+ */
+class PluginDiagnostics {
 
     /** PF4J 插件管理器。 */
     private final PluginManager pluginManager;
