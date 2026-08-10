@@ -53,41 +53,42 @@
 
     <!-- 版本属性定义：Java 版本、依赖版本与 Maven 插件版本统一管理 -->
     <properties>
-        <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
-        <revision>1.0.x.20260630-SNAPSHOT</revision>
-        <java.version>1.8</java.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <pf4j.version>3.15.0</pf4j.version>
-        <pf4j-spring.version>0.9.0</pf4j-spring.version>
-        <pf4j-update.version>2.3.0</pf4j-update.version>
-        <spring.version>5.3.39</spring.version>
-        <spring-cloud-deployer.version>2.9.5</spring-cloud-deployer.version>
-        <gson.version>2.14.0</gson.version>
-        <cglib.version>3.3.0</cglib.version>
-        <commons-lang3.version>3.20.0</commons-lang3.version>
-        <slf4j.version>2.0.18</slf4j.version>
-        <lombok.version>1.18.46</lombok.version>
-        <junit.version>5.11.4</junit.version>
-        <junit-jupiter.version>5.11.4</junit-jupiter.version>
-        <maven.version>3.0</maven.version>
-        <!-- Maven Plugin versions -->
-        <maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
-        <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
-        <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
-        <maven-enforcer-plugin.version>3.6.3</maven-enforcer-plugin.version>
-        <maven-flatten-plugin.version>1.7.3</maven-flatten-plugin.version>
-        <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
-        <maven-install-plugin.version>3.1.4</maven-install-plugin.version>
-        <maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
-        <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
-        <maven-release-plugin.version>3.3.1</maven-release-plugin.version>
-        <maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
-        <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
-        <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
-        <jacoco-maven-plugin.version>0.8.15</jacoco-maven-plugin.version>
+            <java.version>1.8</java.version>
+            <maven.compiler.source>${java.version}</maven.compiler.source>
+            <maven.compiler.target>${java.version}</maven.compiler.target>
+            <maven.version>3.0</maven.version>
+            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+            <!-- Dependency versions -->
+            <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
+            <cglib.version>3.3.0</cglib.version>
+            <commons-lang3.version>3.20.0</commons-lang3.version>
+            <gson.version>2.14.0</gson.version>
+            <jacoco-maven-plugin.version>0.8.15</jacoco-maven-plugin.version>
+            <junit-jupiter.version>5.11.4</junit-jupiter.version>
+            <junit.version>5.11.4</junit.version>
+            <lombok.version>1.18.46</lombok.version>
+            <pf4j-spring.version>0.9.0</pf4j-spring.version>
+            <pf4j-update.version>2.3.0</pf4j-update.version>
+            <pf4j.version>3.15.0</pf4j.version>
+            <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+            <revision>1.0.x.20260630-SNAPSHOT</revision>
+            <slf4j.version>2.0.18</slf4j.version>
+            <spring-cloud-deployer.version>2.9.5</spring-cloud-deployer.version>
+            <spring.version>5.3.39</spring.version>
+            <!-- Maven Plugin versions -->
+            <maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
+            <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
+            <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
+            <maven-enforcer-plugin.version>3.6.3</maven-enforcer-plugin.version>
+            <maven-flatten-plugin.version>1.7.3</maven-flatten-plugin.version>
+            <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
+            <maven-install-plugin.version>3.1.4</maven-install-plugin.version>
+            <maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
+            <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+            <maven-release-plugin.version>3.3.1</maven-release-plugin.version>
+            <maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
+            <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
+            <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
     </properties>
 
     <!-- 依赖版本统一管理（dependencyManagement） -->
