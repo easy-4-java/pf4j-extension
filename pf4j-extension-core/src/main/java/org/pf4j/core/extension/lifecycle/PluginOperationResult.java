@@ -9,7 +9,7 @@ import org.pf4j.PluginState;
  * <p>对象记录插件、操作、执行前后状态、耗时及失败原因，可直接用于审计日志、指标和
  * Spring 事件发布。该对象不可变且不持有插件实例，避免阻止插件类加载器回收。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Getter
 public final class PluginOperationResult {

@@ -18,7 +18,7 @@ import org.springframework.context.ApplicationEventPublisher;
 /**
  * 将 PF4J 插件状态事件转换为 Spring 应用事件的发布器。
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Slf4j
 public final class SpringPluginEventPublisher implements PluginStateListener {

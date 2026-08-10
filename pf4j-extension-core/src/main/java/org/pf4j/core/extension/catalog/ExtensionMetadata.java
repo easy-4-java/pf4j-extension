@@ -8,7 +8,7 @@ import lombok.Getter;
  * <p>描述一个已启动插件贡献的扩展实现，不持有扩展实例，从而允许插件停止后及时释放实例和
  * 类加载器引用。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Getter
 public final class ExtensionMetadata {

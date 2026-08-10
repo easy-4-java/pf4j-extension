@@ -21,7 +21,7 @@ import org.pf4j.core.extension.lifecycle.PluginOperationResult;
 /**
  * 提供串行化、可回滚的 PF4J 插件生命周期操作。
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Slf4j
 public final class PluginLifecycleManager {

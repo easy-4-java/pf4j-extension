@@ -11,7 +11,7 @@ import org.pf4j.spring.extension.ExtendedExtensionsInjector;
  *
  * <p>插件启动时注入其 Spring 扩展，插件离开启动状态时移除其全部 Bean 和 Controller。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public final class SpringPluginLifecycleSynchronizer implements PluginStateListener {
 

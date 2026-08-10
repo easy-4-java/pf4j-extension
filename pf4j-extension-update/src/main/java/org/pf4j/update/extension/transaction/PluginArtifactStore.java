@@ -8,7 +8,7 @@ import java.nio.file.Path;
  *
  * <p>实现负责备份当前制品、将已验证制品原子激活到插件目录，以及在失败时恢复备份。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public interface PluginArtifactStore {
 

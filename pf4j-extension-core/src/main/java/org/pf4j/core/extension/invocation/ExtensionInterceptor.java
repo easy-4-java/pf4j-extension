@@ -6,7 +6,7 @@ package org.pf4j.core.extension.invocation;
  * <p>实现方可以在调用前后添加日志、指标、追踪、超时或容错逻辑。拦截器必须调用
  * {@link ExtensionInvocationChain#proceed(ExtensionInvocationContext)} 才会继续执行后续链路。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public interface ExtensionInterceptor {
 

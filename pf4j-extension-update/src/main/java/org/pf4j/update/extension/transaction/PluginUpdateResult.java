@@ -7,7 +7,7 @@ import lombok.Getter;
 /**
  * 事务式插件安装或更新结果。
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Getter
 public final class PluginUpdateResult {

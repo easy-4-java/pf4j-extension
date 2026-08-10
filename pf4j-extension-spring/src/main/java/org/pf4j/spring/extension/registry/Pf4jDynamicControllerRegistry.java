@@ -31,7 +31,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
  * 移除时注销该 Bean 对应的全部请求映射并销毁单例。处理器映射可通过构造器提供，也可从
  * {@link ApplicationContext} 中按类型和顺序自动选择。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Slf4j
 public class Pf4jDynamicControllerRegistry implements DynamicControllerRegistry, ApplicationContextAware {

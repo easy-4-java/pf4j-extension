@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  * <p>仅记录插件、扩展和方法标识，不输出参数和返回值，避免敏感信息或大对象进入日志。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Slf4j
 public final class LoggingExtensionInterceptor implements ExtensionInterceptor {

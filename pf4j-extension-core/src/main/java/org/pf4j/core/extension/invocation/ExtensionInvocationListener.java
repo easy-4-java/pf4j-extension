@@ -5,7 +5,7 @@ package org.pf4j.core.extension.invocation;
  *
  * <p>用于接入指标、追踪或审计系统，监听器不应持久保存扩展实例或调用上下文。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public interface ExtensionInvocationListener {
 

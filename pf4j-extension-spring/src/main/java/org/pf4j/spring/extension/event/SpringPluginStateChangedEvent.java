@@ -18,7 +18,7 @@ import org.springframework.context.ApplicationEvent;
  * 枚举或不可修改集合，不暴露 {@code PluginWrapper}、插件实例、插件类型或插件类加载器，避免
  * 异步监听器阻止插件卸载。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Getter
 public final class SpringPluginStateChangedEvent extends ApplicationEvent {

@@ -13,7 +13,7 @@ import lombok.Getter;
  *
  * <p>默认允许 HTTPS 与本地 file 协议，限制单文件大小、压缩条目数和声明的解压总量。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Getter
 public final class DownloadPolicy {

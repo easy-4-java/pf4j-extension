@@ -16,7 +16,7 @@ import org.pf4j.core.extension.exception.PluginInvokeException;
  * <p>调用器以宿主扩展接口创建 JDK 动态代理，按注册顺序执行拦截器，并将最终异常统一包装为
  * {@link PluginInvokeException}。调用器本身不可变且线程安全。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public final class ExtensionInvoker {
 

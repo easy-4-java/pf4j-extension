@@ -16,7 +16,7 @@ import org.springframework.context.ApplicationContext;
  * <p>仅处理带有 Spring 组件注解的扩展类型。普通组件注册为单例 Bean，Controller 则委托
  * {@link DynamicControllerRegistry} 同时完成 Bean 注册和请求映射注册。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public class ExtendedExtensionsInjector extends ExtensionsInjector {
 

@@ -11,7 +11,7 @@ import lombok.Getter;
  * <p>快照只保存插件依赖的基础属性，不持有 PF4J {@code PluginDependency} 对象，适合事件异步
  * 传递、序列化和审计记录。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Getter
 public final class SpringPluginDependencyInfo implements Serializable {

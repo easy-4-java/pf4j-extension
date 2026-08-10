@@ -7,7 +7,7 @@ import org.pf4j.ExtensionPoint;
  *
  * <p>健康表示插件内部没有故障，就绪表示插件已经满足接收新业务请求的全部前置条件。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public interface PluginReadinessCheck extends ExtensionPoint {
 

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * <p>通过 Spring 合并注解模型识别组合注解和元注解，判断扩展是否需要注入、是否为
  * Controller，并按照 Spring 组件注解提取显式 Bean 名称。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public final class InjectorUtils {
 

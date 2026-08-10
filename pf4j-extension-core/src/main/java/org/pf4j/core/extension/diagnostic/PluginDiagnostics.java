@@ -26,7 +26,7 @@ import org.pf4j.PluginWrapper;
  *
  * <p>服务只执行读取操作，不改变插件状态。制品检查支持插件 JAR、展开目录及目录内的依赖 JAR。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public final class PluginDiagnostics {
 

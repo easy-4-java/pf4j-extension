@@ -20,7 +20,7 @@ import org.springframework.util.StringUtils;
  * <p>注册表维护插件与 Bean 的所有权关系，在插件停止、失败或卸载时可以精确销毁其贡献的
  * Spring 对象，防止宿主容器继续持有插件类加载器。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public final class PluginBeanRegistry {
 

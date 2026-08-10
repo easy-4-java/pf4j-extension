@@ -19,7 +19,7 @@ import org.pf4j.update.VerifyException;
  * <p>策略拒绝路径穿越、过多条目、过大声明解压量，以及插件制品中重复携带 PF4J 核心或
  * 宿主明确禁止的 API 包。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public final class ArchiveStructureVerificationPolicy implements ArtifactVerificationPolicy {
 

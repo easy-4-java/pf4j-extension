@@ -13,7 +13,7 @@ import org.pf4j.PluginWrapper;
  *
  * <p>服务按插件查询 PF4J 扩展并聚合结果，不缓存插件扩展实例。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public final class PluginHealthService {
 

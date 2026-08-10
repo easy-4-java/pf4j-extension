@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * 已验证插件制品的审计元数据。
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Getter
 public final class PluginArtifactMetadata {

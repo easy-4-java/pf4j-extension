@@ -27,7 +27,7 @@ import org.pf4j.core.extension.PluginLifecycleManager;
  *
  * <p>任务无论成功或失败都会在本次执行结束时取消，防止同一个 {@link TimerTask} 被重复调度。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Slf4j
 public class PluginLazyTask extends TimerTask {

@@ -12,7 +12,7 @@ import lombok.Getter;
  *
  * <p>结果只包含宿主类加载器可见的基础类型，避免健康状态缓存持有插件对象。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Getter
 public final class PluginHealth {

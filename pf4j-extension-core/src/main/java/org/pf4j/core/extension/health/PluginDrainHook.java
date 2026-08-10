@@ -9,7 +9,7 @@ import org.pf4j.ExtensionPoint;
  *
  * <p>更新或停止插件前，宿主先调用 {@link #beginDrain()} 阻止新请求，再等待已有请求完成。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public interface PluginDrainHook extends ExtensionPoint {
 

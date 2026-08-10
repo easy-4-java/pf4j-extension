@@ -31,7 +31,7 @@ import org.pf4j.core.extension.exception.ExtensionConflictException;
  * <p>目录监听插件状态变化并延迟重建不可变快照，统一校验扩展 ID 与主要实现冲突。目录只保存
  * 类名而不保存扩展实例或 {@link Class}，避免在插件卸载后继续持有插件类加载器。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public final class ExtensionCatalog implements PluginStateListener, AutoCloseable {
 

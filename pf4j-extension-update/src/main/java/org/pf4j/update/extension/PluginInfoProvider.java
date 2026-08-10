@@ -10,7 +10,7 @@ import org.pf4j.update.PluginInfo;
  * <p>实现方负责以 Maven 坐标或其他稳定键组织 {@link PluginInfo}，仓库会为返回的插件信息
  * 补充自身仓库 ID 并构建只读缓存。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public interface PluginInfoProvider {
 

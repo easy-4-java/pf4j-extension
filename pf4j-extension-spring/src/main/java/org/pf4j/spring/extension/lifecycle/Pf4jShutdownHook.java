@@ -12,7 +12,7 @@ import org.pf4j.core.extension.PluginLifecycleManager;
  * <p>JVM 关闭时依次停止并卸载全部插件，避免插件线程、类加载器和文件句柄残留。
  * 清理异常只记录日志，不阻止 JVM 继续关闭。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Slf4j
 public class Pf4jShutdownHook extends Thread {

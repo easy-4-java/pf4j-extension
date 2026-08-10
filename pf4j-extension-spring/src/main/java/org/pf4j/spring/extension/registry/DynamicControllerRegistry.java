@@ -22,7 +22,7 @@ import java.io.IOException;
  *
  * <p>统一封装运行时 Controller Bean 与请求映射的注册和移除操作，供 PF4J 扩展注入器使用。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public interface DynamicControllerRegistry {
 

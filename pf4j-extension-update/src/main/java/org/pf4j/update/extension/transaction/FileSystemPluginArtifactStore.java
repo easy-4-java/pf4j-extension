@@ -13,7 +13,7 @@ import java.util.Objects;
  * <p>激活和恢复先复制到目标目录临时文件，再优先使用原子移动替换正式制品，避免宿主观察到
  * 部分写入文件。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public final class FileSystemPluginArtifactStore implements PluginArtifactStore {
 

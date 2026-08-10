@@ -13,7 +13,7 @@ import org.pf4j.PluginState;
  * <p>聚合 PF4J 描述符和 {@code @PluginMapping} 展示信息，为管理界面、审计和诊断提供稳定的
  * 只读模型。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Getter
 public final class PluginMetadata {

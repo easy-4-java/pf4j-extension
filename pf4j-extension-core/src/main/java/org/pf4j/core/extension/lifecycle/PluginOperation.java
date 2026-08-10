@@ -6,7 +6,7 @@ package org.pf4j.core.extension.lifecycle;
  * <p>用于统一描述加载、启动、停止、卸载、替换和回滚操作，便于监听器、审计和指标系统
  * 使用稳定的操作标识。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public enum PluginOperation {
 

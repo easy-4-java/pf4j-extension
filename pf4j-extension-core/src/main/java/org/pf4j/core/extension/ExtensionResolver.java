@@ -17,7 +17,7 @@ import org.pf4j.core.extension.exception.ExtensionResolutionException;
  *
  * <p>支持按插件、扩展 ID 和 {@link Primary} 默认实现解析扩展，避免业务侧重复编写遍历与异常处理逻辑。
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public final class ExtensionResolver {
 

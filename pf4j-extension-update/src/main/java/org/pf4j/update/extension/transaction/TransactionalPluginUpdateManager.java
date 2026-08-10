@@ -29,7 +29,7 @@ import org.pf4j.update.UpdateRepository;
  * <p>更新操作在单个管理器内串行执行。更新目标存在依赖方时，会在 PF4J 递归卸载后按依赖顺序
  * 重新加载这些插件；新版本失败时恢复旧制品并重新加载整个受影响集合。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Slf4j
 public class TransactionalPluginUpdateManager extends UpdateManager {

@@ -21,7 +21,7 @@ import org.springframework.util.StringUtils;
  * 已存在的本地文件；文件不存在时，将路径转换为 Maven 坐标并交由 Spring Cloud Deployer
  * 的 {@link MavenResource} 从配置的仓库解析。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public class MavenFileDownloader implements FileDownloader {
 

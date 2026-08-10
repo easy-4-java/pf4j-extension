@@ -17,7 +17,7 @@ import org.springframework.util.StringUtils;
  * <p>先逐个加载配置的插件路径，再启动成功获得 ID 的插件。单个插件失败只记录错误，
  * 不会中断后续插件处理，适合需要尽可能启动可用插件的非事务性场景。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Slf4j
 public final class PluginUtils {

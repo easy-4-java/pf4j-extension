@@ -7,7 +7,7 @@ import java.util.Objects;
  *
  * <p>无论调用成功或失败都会通知监听器；监听器异常不会覆盖扩展原始异常。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public final class TimingExtensionInterceptor implements ExtensionInterceptor {
 

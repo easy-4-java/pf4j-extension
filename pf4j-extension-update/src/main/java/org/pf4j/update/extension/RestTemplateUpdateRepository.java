@@ -33,7 +33,7 @@ import org.springframework.util.StringUtils;
  * 设置仓库 ID 后构建不可修改缓存。网络、反序列化或数据处理失败会记录日志并降级为空仓库，
  * 避免更新服务故障影响应用主流程。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Slf4j
 public class RestTemplateUpdateRepository implements UpdateRepository {

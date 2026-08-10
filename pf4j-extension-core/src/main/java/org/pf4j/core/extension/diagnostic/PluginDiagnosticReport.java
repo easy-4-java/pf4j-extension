@@ -13,7 +13,7 @@ import org.pf4j.PluginState;
  *
  * <p>报告仅保存字符串、路径和枚举，不持有插件类、扩展实例或插件类加载器。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Getter
 public final class PluginDiagnosticReport {

@@ -17,7 +17,7 @@ import org.pf4j.update.VerifyException;
  *
  * <p>算法由调用方指定，可使用 Ed25519、SHA256withRSA 或其他当前 JDK 支持的签名算法。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public final class DetachedSignatureVerificationPolicy implements ArtifactVerificationPolicy {
 

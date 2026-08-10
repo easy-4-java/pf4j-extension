@@ -7,7 +7,7 @@ import org.pf4j.ExtensionPoint;
  *
  * <p>插件可以提供一个或多个实现，宿主在启动、升级提交和周期巡检时执行。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public interface PluginHealthCheck extends ExtensionPoint {
 

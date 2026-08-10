@@ -14,7 +14,7 @@ import lombok.Getter;
  * <p>上下文携带插件、扩展、目标对象、方法和参数，并提供线程安全属性表供拦截器之间传递
  * 低生命周期的调用数据。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Getter
 public final class ExtensionInvocationContext {

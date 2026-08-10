@@ -5,7 +5,7 @@ import org.pf4j.PluginRuntimeException;
 /**
  * 插件加载或生命周期状态迁移失败时抛出的异常。
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public class PluginLifecycleException extends PluginRuntimeException {
 

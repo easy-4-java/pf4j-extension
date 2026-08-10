@@ -3,7 +3,7 @@ package org.pf4j.update.extension.transaction;
 /**
  * 事务式插件更新完成监听器。
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public interface PluginUpdateListener {
 

@@ -11,7 +11,7 @@ import org.pf4j.update.PluginInfo;
  * <p>适合作为未配置外部插件目录时的安全默认实现，调用方可以通过自定义
  * {@link PluginInfoProvider} 提供实际 Maven 插件坐标和版本信息。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public class DefaultPluginInfoProvider implements PluginInfoProvider {
 

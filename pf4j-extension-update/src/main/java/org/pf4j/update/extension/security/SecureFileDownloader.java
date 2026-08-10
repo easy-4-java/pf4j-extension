@@ -11,7 +11,7 @@ import org.pf4j.update.FileDownloader;
 /**
  * 带协议和下载后文件大小限制的 PF4J 文件下载器装饰器。
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public final class SecureFileDownloader implements FileDownloader {
 

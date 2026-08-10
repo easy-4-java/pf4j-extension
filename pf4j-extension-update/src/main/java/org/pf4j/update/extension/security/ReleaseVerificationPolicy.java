@@ -13,7 +13,7 @@ import org.pf4j.update.VerifyException;
 /**
  * 插件发布协议、摘要和文件大小验证策略。
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public final class ReleaseVerificationPolicy implements ArtifactVerificationPolicy {
 

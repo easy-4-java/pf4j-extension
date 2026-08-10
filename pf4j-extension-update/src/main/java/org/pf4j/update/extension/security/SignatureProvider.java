@@ -7,7 +7,7 @@ import org.pf4j.update.FileVerifier;
 /**
  * 插件发布分离签名提供器。
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public interface SignatureProvider {
 

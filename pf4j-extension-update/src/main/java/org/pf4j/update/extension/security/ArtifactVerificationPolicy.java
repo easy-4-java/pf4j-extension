@@ -11,7 +11,7 @@ import org.pf4j.update.VerifyException;
  *
  * <p>策略在 PF4J Update 基础校验之后执行，用于补充协议、大小、压缩结构、签名和企业准入规则。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public interface ArtifactVerificationPolicy {
 

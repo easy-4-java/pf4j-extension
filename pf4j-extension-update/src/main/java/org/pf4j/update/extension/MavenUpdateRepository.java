@@ -21,7 +21,7 @@ import org.springframework.util.CollectionUtils;
  * <p>插件目录由 {@link PluginInfoProvider} 提供，并在首次访问时构建不可修改缓存。仓库使用
  * {@link MavenFileDownloader} 解析插件文件，使插件发布信息可以通过 Maven 仓库分发。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public class MavenUpdateRepository implements UpdateRepository {
 

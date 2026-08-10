@@ -14,7 +14,7 @@ import lombok.Getter;
  * <p>快照完整保留 PF4J 标准描述符字段和结构化依赖信息，但不持有插件描述符、插件实例、
  * 插件类型或类加载器。</p>
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Getter
 public final class SpringPluginDescriptorInfo implements Serializable {

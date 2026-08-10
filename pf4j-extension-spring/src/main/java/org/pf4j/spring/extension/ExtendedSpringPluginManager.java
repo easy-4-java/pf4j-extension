@@ -23,7 +23,7 @@ import org.springframework.beans.factory.InitializingBean;
 /**
  * 支持 Spring 扩展注入与容器生命周期托管的 PF4J 插件管理器。
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Slf4j
 public class ExtendedSpringPluginManager extends SpringPluginManager implements InitializingBean, DisposableBean {

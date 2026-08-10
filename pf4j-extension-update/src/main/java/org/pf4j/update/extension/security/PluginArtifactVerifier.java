@@ -15,7 +15,7 @@ import org.pf4j.update.verifier.CompoundVerifier;
 /**
  * 组合 PF4J 基础校验和生产制品策略的文件验证器。
  *
- * @author <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public final class PluginArtifactVerifier implements FileVerifier {
 
