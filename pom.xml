@@ -9,7 +9,6 @@
     <packaging>pom</packaging>
     <description>PF4J extension multi-module parent</description>
 
-    
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -18,7 +17,6 @@
         </license>
     </licenses>
 
-    
     <developers>
         <developer>
             <name>Loong Wan</name>
@@ -31,7 +29,6 @@
         </developer>
     </developers>
 
-    
     <scm>
         <connection>scm:git:https://github.com/easy-4-java/pf4j-extension.git</connection>
         <developerConnection>scm:git:https://github.com/easy-4-java/pf4j-extension.git</developerConnection>
@@ -39,7 +36,6 @@
         <tag>HEAD</tag>
     </scm>
 
-    
     <distributionManagement>
         <repository>
             <id>2624322-release-6F6h6R</id>
@@ -51,57 +47,55 @@
         </snapshotRepository>
     </distributionManagement>
 
-    
     <properties>
-            <java.version>21</java.version>
-            <maven.compiler.release>${java.version}</maven.compiler.release>
-            <maven.compiler.source>${java.version}</maven.compiler.source>
-            <maven.compiler.target>${java.version}</maven.compiler.target>
-            <maven.version>3.0</maven.version>
-            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-            <!-- Dependency versions -->
-            <cglib.version>3.3.0</cglib.version>
-            <commons-lang3.version>3.20.0</commons-lang3.version>
-            <gson.version>2.14.0</gson.version>
-            <junit-jupiter.version>6.1.0</junit-jupiter.version>
-            <junit.version>5.11.4</junit.version>
-            <lombok.version>1.18.46</lombok.version>
-            <pf4j-spring.version>0.10.0</pf4j-spring.version>
-            <pf4j-update.version>2.3.0</pf4j-update.version>
-            <pf4j.version>3.15.0</pf4j.version>
-            <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-            <revision>3.0.x.20260630-SNAPSHOT</revision>
-            <slf4j.version>2.0.18</slf4j.version>
-            <spring-cloud-deployer.version>2.9.5</spring-cloud-deployer.version>
-            <spring.version>7.0.8</spring.version>
-            <!-- Maven Plugin versions -->
-            <maven-central-publishing-plugin.version>0.11.0</maven-central-publishing-plugin.version>
-            <maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
-            <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
-            <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
-            <maven-enforcer-plugin.version>3.6.3</maven-enforcer-plugin.version>
-            <maven-flatten-plugin.version>1.7.3</maven-flatten-plugin.version>
-            <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
-            <maven-install-plugin.version>3.1.4</maven-install-plugin.version>
-            <maven-jacoco-plugin.version>0.8.15</maven-jacoco-plugin.version>
-            <maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
-            <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
-            <maven-release-plugin.version>3.3.1</maven-release-plugin.version>
-            <maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
-            <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
-            <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
+        <java.version>21</java.version>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.version>3.0</maven.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Dependency versions -->
+        <cglib.version>3.3.0</cglib.version>
+        <commons-lang3.version>3.20.0</commons-lang3.version>
+        <gson.version>2.14.0</gson.version>
+        <junit-jupiter.version>6.1.0</junit-jupiter.version>
+        <junit.version>5.11.4</junit.version>
+        <lombok.version>1.18.46</lombok.version>
+        <pf4j-spring.version>0.10.0</pf4j-spring.version>
+        <pf4j-update.version>2.3.0</pf4j-update.version>
+        <pf4j.version>3.15.0</pf4j.version>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <revision>3.0.x.20260630-SNAPSHOT</revision>
+        <slf4j.version>2.0.18</slf4j.version>
+        <spring-cloud-deployer.version>2.9.5</spring-cloud-deployer.version>
+        <spring.version>7.0.8</spring.version>
+        <!-- Maven Plugin versions -->
+        <maven-central-publishing-plugin.version>0.11.0</maven-central-publishing-plugin.version>
+        <maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
+        <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
+        <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
+        <maven-enforcer-plugin.version>3.6.3</maven-enforcer-plugin.version>
+        <maven-flatten-plugin.version>1.7.3</maven-flatten-plugin.version>
+        <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
+        <maven-install-plugin.version>3.1.4</maven-install-plugin.version>
+        <maven-jacoco-plugin.version>0.8.15</maven-jacoco-plugin.version>
+        <maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
+        <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+        <maven-release-plugin.version>3.3.1</maven-release-plugin.version>
+        <maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
+        <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
+        <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
     </properties>
 
-    
     <dependencyManagement>
         <dependencies>
-            
+
             <dependency>
                 <groupId>org.pf4j</groupId>
                 <artifactId>pf4j</artifactId>
                 <version>${pf4j.version}</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.pf4j</groupId>
                 <artifactId>pf4j-spring</artifactId>
@@ -117,103 +111,103 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.pf4j</groupId>
                 <artifactId>pf4j-update</artifactId>
                 <version>${pf4j-update.version}</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
                 <version>6.2.16</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jcl</artifactId>
                 <version>6.2.16</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-beans</artifactId>
                 <version>6.2.16</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
                 <version>6.2.16</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
                 <version>6.2.16</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-expression</artifactId>
                 <version>6.2.16</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-web</artifactId>
                 <version>6.2.16</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
                 <version>6.2.19</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-deployer-resource-maven</artifactId>
                 <version>${spring-cloud-deployer.version}</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
                 <version>${gson.version}</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>cglib</groupId>
                 <artifactId>cglib</artifactId>
                 <version>${cglib.version}</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-simple</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
@@ -222,50 +216,45 @@
         </dependencies>
     </dependencyManagement>
 
-    
     <dependencies>
-        
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
     </dependencies>
 
-    
     <modules>
         <module>pf4j-extension-core</module>
         <module>pf4j-extension-spring</module>
         <module>pf4j-extension-update</module>
     </modules>
 
-    
     <build>
         <pluginManagement>
             <plugins>
 
-                
                 <plugin>
-                    
+
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>${maven-clean-plugin.version}</version>
                 </plugin>
 
-                
                 <plugin>
-                    
+
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
                         <release>${java.version}</release>
-                        
+
                         <encoding>${project.build.sourceEncoding}</encoding>
                         <annotationProcessorPaths>
                             <path>
@@ -277,23 +266,20 @@
                     </configuration>
                 </plugin>
 
-                
                 <plugin>
-                    
+
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>${maven-deploy-plugin.version}</version>
                 </plugin>
 
-                
                 <plugin>
-                    
+
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
                     <version>${maven-enforcer-plugin.version}</version>
                 </plugin>
 
-                
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>flatten-maven-plugin</artifactId>
@@ -320,25 +306,22 @@
                     </executions>
                 </plugin>
 
-                
                 <plugin>
-                    
+
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
                     <version>${maven-gpg-plugin.version}</version>
                 </plugin>
 
-                
                 <plugin>
-                    
+
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-install-plugin</artifactId>
                     <version>${maven-install-plugin.version}</version>
                 </plugin>
 
-                
                 <plugin>
-                    
+
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>${maven-jar-plugin.version}</version>
@@ -352,17 +335,15 @@
                     </configuration>
                 </plugin>
 
-                
                 <plugin>
-                    
+
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>${maven-javadoc-plugin.version}</version>
                 </plugin>
 
-                
                 <plugin>
-                    
+
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
                     <version>${maven-release-plugin.version}</version>
@@ -374,25 +355,22 @@
                     </configuration>
                 </plugin>
 
-                
                 <plugin>
-                    
+
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>${maven-resources-plugin.version}</version>
                 </plugin>
 
-                
                 <plugin>
-                    
+
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
                     <version>${maven-source-plugin.version}</version>
                 </plugin>
 
-                
                 <plugin>
-                    
+
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven-surefire-plugin.version}</version>
@@ -404,9 +382,8 @@
         </pluginManagement>
         <plugins>
 
-            
             <plugin>
-                
+
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${maven-jacoco-plugin.version}</version>
@@ -449,20 +426,17 @@
                 </executions>
             </plugin>
 
-            
             <plugin>
-                
+
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <release>${java.version}</release>
-                        
-                    
-                    
+
                     <parameters>true</parameters>
                     <encoding>${project.build.sourceEncoding}</encoding>
-                    
+
                     <maxmem>512M</maxmem>
                     <annotationProcessorPaths>
                         <path>
@@ -476,18 +450,15 @@
         </plugins>
     </build>
 
-    
     <profiles>
-        
 
         <profile>
             <id>release</id>
             <build>
                 <plugins>
 
-                    
                     <plugin>
-                        
+
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
                         <executions>
@@ -500,9 +471,8 @@
                         </executions>
                     </plugin>
 
-                    
                     <plugin>
-                        
+
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <executions>
@@ -515,39 +485,34 @@
                         </executions>
                     </plugin>
 
-                    
                     <plugin>
-                        
+
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
                     </plugin>
 
-                    
                     <plugin>
-                        
+
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-deploy-plugin</artifactId>
                     </plugin>
 
-                    
                     <plugin>
-                        
+
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-release-plugin</artifactId>
                     </plugin>
                 </plugins>
             </build>
         </profile>
-        
 
         <profile>
             <id>central</id>
             <build>
                 <plugins>
 
-                    
                     <plugin>
-                        
+
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
                         <version>${maven-gpg-plugin.version}</version>
@@ -562,9 +527,8 @@
                         </executions>
                     </plugin>
 
-                    
                     <plugin>
-                        
+
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
                         <version>${maven-central-publishing-plugin.version}</version>
