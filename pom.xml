@@ -8,7 +8,6 @@
     <version>${revision}</version>
     <packaging>pom</packaging>
     <description>PF4J extension multi-module parent</description>
-
     <!-- 开源协议采用 Apache 2.0 协议 -->
     <licenses>
         <license>
@@ -17,7 +16,13 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-
+    <!-- 源码仓库（SCM）信息 -->
+    <scm>
+        <connection>scm:git:https://github.com/easy-4-java/pf4j-extension.git</connection>
+        <developerConnection>scm:git:https://github.com/easy-4-java/pf4j-extension.git</developerConnection>
+        <url>https://github.com/easy-4-java/pf4j-extension</url>
+        <tag>${project.artifactId}</tag>
+    </scm>
     <!-- 开发者信息 -->
     <developers>
         <developer>
@@ -30,68 +35,46 @@
             <timezone>+8</timezone>
         </developer>
     </developers>
-
-    <!-- 源码仓库（SCM）信息 -->
-    <scm>
-        <connection>scm:git:https://github.com/easy-4-java/pf4j-extension.git</connection>
-        <developerConnection>scm:git:https://github.com/easy-4-java/pf4j-extension.git</developerConnection>
-        <url>https://github.com/easy-4-java/pf4j-extension</url>
-        <tag>${project.artifactId}</tag>
-    </scm>
-
-    <!-- 制品发布仓库配置（distributionManagement） -->
-    <distributionManagement>
-        <repository>
-            <id>2624322-release-6F6h6R</id>
-            <url>https://packages.aliyun.com/6927b116e6c3e0425dbdf60d/maven/2624322-release-6f6h6r</url>
-        </repository>
-        <snapshotRepository>
-            <id>2624322-snapshot-3EoOv3</id>
-            <url>https://packages.aliyun.com/6927b116e6c3e0425dbdf60d/maven/2624322-snapshot-3eoov3</url>
-        </snapshotRepository>
-    </distributionManagement>
-
-    <!-- 版本属性定义：Java 版本、依赖版本与 Maven 插件版本统一管理 -->
     <properties>
         <!-- ═══ 第一段: 基础属性（自然排序）═══ -->
-            <java.version>17</java.version>
-            <maven.compiler.release>${java.version}</maven.compiler.release>
-            <maven.version>3.9.16</maven.version>
-            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-            <!-- Dependency versions -->
-            <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
-            <cglib.version>3.3.0</cglib.version>
-            <commons-lang3.version>3.20.0</commons-lang3.version>
-            <gson.version>2.14.0</gson.version>
-            <jacoco-maven-plugin.version>0.8.15</jacoco-maven-plugin.version>
-            <junit-jupiter.version>6.1.0</junit-jupiter.version>
-            <junit.version>5.11.4</junit.version>
-            <lombok.version>1.18.46</lombok.version>
-            <pf4j-spring.version>0.10.0</pf4j-spring.version>
-            <pf4j-update.version>2.3.0</pf4j-update.version>
-            <pf4j.version>3.15.0</pf4j.version>
-            <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-            <revision>2.0.x.20260630-SNAPSHOT</revision>
-            <slf4j.version>2.0.18</slf4j.version>
-            <spring-cloud-deployer.version>2.9.5</spring-cloud-deployer.version>
-            <spring.version>6.2.19</spring.version>
-            <!-- Maven Plugin versions -->
-            <maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
-            <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
-            <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
-            <maven-enforcer-plugin.version>3.6.3</maven-enforcer-plugin.version>
-            <maven-flatten-plugin.version>1.7.3</maven-flatten-plugin.version>
-            <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
-            <maven-install-plugin.version>3.1.4</maven-install-plugin.version>
-            <maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
-            <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
-            <maven-release-plugin.version>3.3.1</maven-release-plugin.version>
-            <maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
-            <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
-            <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
-    </properties>
+        <java.version>17</java.version>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+        <maven.version>3.9.16</maven.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <revision>2.0.x.20260630-SNAPSHOT</revision>
 
-    <!-- 依赖版本统一管理（dependencyManagement） -->
+        <!-- ═══ Dependency versions（自然排序）═══ -->
+        <cglib.version>3.3.0</cglib.version>
+        <commons-lang3.version>3.20.0</commons-lang3.version>
+        <gson.version>2.14.0</gson.version>
+        <junit-jupiter.version>6.1.0</junit-jupiter.version>
+        <junit.version>5.11.4</junit.version>
+        <lombok.version>1.18.46</lombok.version>
+        <pf4j-spring.version>0.10.0</pf4j-spring.version>
+        <pf4j-update.version>2.3.0</pf4j-update.version>
+        <pf4j.version>3.15.0</pf4j.version>
+        <slf4j.version>2.0.18</slf4j.version>
+        <spring-cloud-deployer.version>2.9.5</spring-cloud-deployer.version>
+        <spring.version>6.2.19</spring.version>
+
+        <!-- ═══ Maven Plugin versions（自然排序）═══ -->
+        <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.15</jacoco-maven-plugin.version>
+        <maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
+        <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
+        <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
+        <maven-enforcer-plugin.version>3.6.3</maven-enforcer-plugin.version>
+        <maven-flatten-plugin.version>1.7.3</maven-flatten-plugin.version>
+        <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
+        <maven-install-plugin.version>3.1.4</maven-install-plugin.version>
+        <maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
+        <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+        <maven-release-plugin.version>3.3.1</maven-release-plugin.version>
+        <maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
+        <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
+        <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
+    </properties>
     <dependencyManagement>
         <dependencies>
             <!-- For Pf4j -->
@@ -220,8 +203,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <!-- 项目依赖（dependencies） -->
     <dependencies>
         <!-- For Lombok -->
         <dependency>
@@ -235,14 +216,22 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
     </dependencies>
-
-    <!-- 项目子模块（modules） -->
     <modules>
         <module>pf4j-extension-core</module>
         <module>pf4j-extension-spring</module>
         <module>pf4j-extension-update</module>
     </modules>
-
+    <!-- 制品发布仓库配置（distributionManagement） -->
+    <distributionManagement>
+        <repository>
+            <id>2624322-release-6F6h6R</id>
+            <url>https://packages.aliyun.com/6927b116e6c3e0425dbdf60d/maven/2624322-release-6f6h6r</url>
+        </repository>
+        <snapshotRepository>
+            <id>2624322-snapshot-3EoOv3</id>
+            <url>https://packages.aliyun.com/6927b116e6c3e0425dbdf60d/maven/2624322-snapshot-3eoov3</url>
+        </snapshotRepository>
+    </distributionManagement>
     <!-- 构建配置（Build） -->
     <build>
         <pluginManagement>
@@ -470,7 +459,6 @@
             </plugin>
         </plugins>
     </build>
-
     <!-- 构建 Profile 配置 -->
     <profiles>
         <!-- 发布到 Maven Central Portal：mvn -Prelease deploy（GPG 签名 + 源码 + Javadoc + Central 发布插件） -->
